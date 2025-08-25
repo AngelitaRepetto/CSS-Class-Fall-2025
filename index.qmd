@@ -1,0 +1,59 @@
+---
+title: "SOC 480: Advanced Research Methods in Sociology - Computational Social Science"
+subtitle: "Fall 2025"
+---
+
+## Course Information
+
+**Instructor:** Professor Angelita Repetto 
+
+**Email:** arepetto@msu.edu
+
+**Office Hours:** Thursday 12:30-2:30 
+                  In-person: Berkey Hall 433A 
+                  Zoom link: 
+
+**Location:** South Kedzie Hall Room 22 
+
+**Time:** Tuesday/Thursday at 10:20 AM-11:40 AM
+
+Welcome to the course website for SOC 480: Advanced Research Methods in Sociology!
+
+On this website you will find: 
+
+- Syllabus 
+
+- Shchedule 
+
+- Assignment guidelines 
+
+- Labs 
+
+- R related material 
+
+On Canvas you will find: 
+
+- Reading material 
+
+- Data for labs and projects 
+
+- Submit assignments 
+
+- Grades 
+
+## Course Description 
+
+This course provides an overview of computational social science methods and their application to sociological research questions. Students will learn to implement these methods using R programming.
+Digital technology has fundamentally transformed both societal functioning and social research methodologies. As society becomes increasingly dependent on digital infrastructure and internet connectivity, vast digital footprints emerge that offer unprecedented research opportunities. These footprints encompass credit card transactions, social media interactions, GPS tracking data, and cellular communication records, among other sources. The exponential growth in data scale and accessibility has driven substantial advances in computational methods for analyzing these complex datasets. Social science disciplines now routinely leverage these resources to investigate pressing questions about contemporary society.
+
+This course examines diverse data sources and analytical methods, explores the types of research questions they can address, and provides hands-on training in conducting these analyses using R. Students will gain experience with data collection, processing, visualization, and statistical modeling techniques commonly employed in computational social science research.
+
+The course culminates in a comprehensive final project where students apply multiple computational methods to investigate a sociological research question of their choosing. This project requires students to conduct original analysis, produce a formal research paper, and present their findings to the class, integrating the theoretical and technical skills developed throughout the semester.
+
+## Getting Started
+
+1. Review the [syllabus](syllabus.qmd)
+2. Check the [schedule](schedule.qmd) for upcoming assignments
+3. Set up your [software environment](resources/software.qmd)
+
+

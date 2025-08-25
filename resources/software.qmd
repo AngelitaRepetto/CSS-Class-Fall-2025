@@ -1,0 +1,30 @@
+---
+title: "Software Setup"
+---
+
+<!-- ADD: Instructions for required software installation -->
+
+## Required Software
+
+### [SOFTWARE OPTION 1]
+
+<!-- ADD: Step-by-step installation instructions -->
+
+### [SOFTWARE OPTION 2]
+
+<!-- ADD: Alternative software setup instructions -->
+
+### Additional Tools
+
+<!-- ADD: Any additional tools students need -->
+
+## Testing Your Setup
+
+<!-- ADD: Code snippets students can run to test their installation -->
+
+## Getting Help
+
+- **Course discussion forum**: [ADD LINK]
+- **Office hours**: [ADD TIMES]
+- **TA sessions**: [ADD TIMES]
+

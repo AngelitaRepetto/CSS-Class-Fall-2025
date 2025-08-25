@@ -1,0 +1,63 @@
+---
+title: "Projects"
+---
+
+<!-- ADD: Project overview and expectations -->
+
+## [PROJECT NAME 1]
+
+**Due:** [DATE]
+
+**Length:** [PAGE COUNT/REQUIREMENTS]
+
+**Goal:** [PROJECT OBJECTIVE]
+
+### Requirements
+- [REQUIREMENT 1]
+- [REQUIREMENT 2]
+- [REQUIREMENT 3]
+
+### Grading Criteria
+- [CRITERION 1] ([%])
+- [CRITERION 2] ([%])
+- [CRITERION 3] ([%])
+
+---
+
+## [PROJECT NAME 2]
+
+**Due:** [DATE]
+
+**Length:** [PAGE COUNT/REQUIREMENTS]
+
+**Goal:** [PROJECT OBJECTIVE]
+
+### Timeline
+- **[MILESTONE 1]:** [DATE]
+- **[MILESTONE 2]:** [DATE]
+- **[FINAL DUE DATE]:** [DATE]
+
+### Requirements
+- [REQUIREMENT 1]
+- [REQUIREMENT 2]
+- [REQUIREMENT 3]
+
+### Grading Criteria
+- [CRITERION 1] ([%])
+- [CRITERION 2] ([%])
+- [CRITERION 3] ([%])
+
+## Project Ideas
+
+<!-- ADD: Suggested topics and data sources for student projects -->
+
+### Suggested Topics
+- [TOPIC 1]
+- [TOPIC 2]
+- [TOPIC 3]
+
+### Data Sources
+- [DATA SOURCE 1]
+- [DATA SOURCE 2]
+- [DATA SOURCE 3]
+

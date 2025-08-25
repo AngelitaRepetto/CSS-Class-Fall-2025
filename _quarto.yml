@@ -1,0 +1,69 @@
+project:
+  type: website
+  title: "Computational Social Science - Fall 2025"
+  output-dir: docs
+
+website:
+  title: "Computational Social Science"
+  description: "Fall 2025 - Michigan State University"
+  favicon: favicon.ico
+  
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Syllabus"
+        href: syllabus.qmd
+      - text: "Schedule"
+        href: schedule.qmd
+      - text: "Labs"
+        menu:
+          - text: "Lab One - Part One"
+            href: assignments/Lab One.qmd
+          - text: "Lab Two - Part Two"
+            href: assignments/Lab One Part Two.qmd
+          - text: "Lab Three"
+            href: assignments/projects.qmd
+          - text: "Lab Four"
+            href: assignments/projects.qmd
+          - text: "Lab Five"
+            href: assignments/projects.qmd
+          - text: "Lab Six"
+            href: assignments/projects.qmd
+          - text: "Lab Seven"
+            href: assignments/projects.qmd
+          - text: "Lab Eight"
+            href: assignments/projects.qmd
+      - text: "Final Project"
+        menu:
+          - text: "Project Proposal"
+            href: resources/software.qmd
+          - text: "Project Presentation"
+            href: resources/tutorials.qmd
+          - text: "Final Paper"
+            href: resources/data.qmd
+    right:
+      - icon: github
+        href: https://github.com/[YOUR-USERNAME]/css-fall2025
+      - icon: envelope
+        href: mailto:[YOUR-EMAIL]
+
+  sidebar:
+    style: "floating"
+    
+  page-footer:
+    left: "© 2025 [YOUR NAME]"
+    right: 
+      - icon: github
+        href: https://github.com/[YOUR-USERNAME]/css-fall2025
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - custom.scss
+    css: styles.css
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github

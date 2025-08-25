@@ -1,0 +1,144 @@
+---
+title: "Syllabus"
+---
+
+## SOC 480: Advanced Research Methods in Sociology - Computational Social Science Fall 2025 
+
+## Course Description 
+
+This course provides an overview of computational social science methods and their application to sociological research questions. Students will learn to implement these methods using R programming.
+
+Digital technology has fundamentally transformed both societal functioning and social research methodologies. As society becomes increasingly dependent on digital infrastructure and internet connectivity, vast digital footprints emerge that offer unprecedented research opportunities. These footprints encompass credit card transactions, social media interactions, GPS tracking data, and cellular communication records, among other sources. The exponential growth in data scale and accessibility has driven substantial advances in computational methods for analyzing these complex datasets. Social science disciplines now routinely leverage these resources to investigate pressing questions about contemporary society.
+
+This course examines diverse data sources and analytical methods, explores the types of research questions they can address, and provides hands-on training in conducting these analyses using R. Students will gain experience with data collection, processing, visualization, and statistical modeling techniques commonly employed in computational social science research.
+
+The course culminates in a comprehensive final project where students apply multiple computational methods to investigate a sociological research question of their choosing. This project requires students to conduct original analysis, produce a formal research paper, and present their findings to the class, integrating the theoretical and technical skills developed throughout the semester.
+
+
+## Grading
+
+| Component   | Weight | Details             |
+|-------------|--------|---------------------|
+| Class Attendance | 25% | - Each class is 1% up to 25%<br>- You get two free misses as there are 27 classes total |
+| Lab Work        | 25% | - 2.5% per lab assignment submitted |
+| Final Project   | 50% | - Final Project Proposal: 10%<br>- Final Project Presentation: 20%<br>- Final Project Paper: 20% |
+
+
+## Attendance Policy 
+
+Attendance in class is mandatory. You can miss a maximum of two classes with no penalty. I recommend saving these for if you are ill. 
+
+## Readings 
+
+Assigned readings must be completed before class on Tuesday. 
+
+## Lab Work 
+
+There will be in class lab assignments that must be submitted at the end of lab. You will submit your R markdown file with the code from lab and your answers for the lab questions which includes the code and a written response of the answer. These will be graded on completion and effort.  
+
+## Final Project 
+
+The primary component of your grade is the final project. This will be a research paper exploring a sociological topic using computational methods learned during the course. This can be completed individually or in pairs. This will be broken down into several components: 
+
+1) Project Proposal (10%)
+2) Final project presentation (20%)
+3) Final project paper (30%)
+
+The final paper should be 8-10 pages, times new roman, 12pt font, double spaced, with no spaces between paragraphs. 
+
+## Email Etiquette Policy
+
+Students are required to use professional email communication when contacting the instructor or teaching assistants. All course-related emails must adhere to the following guidelines:
+- Use your official university email account.
+- Include a clear and specific subject line (e.g., “SOC 140: Question on Assignment 2”).
+- Begin with a professional salutation (e.g., “Dear Professor Repetto”).
+- Include well wishes. 
+- State your full name and the course title in the body of the message.
+- Communicate in a concise, respectful, and professional manner.
+- Do not use slang, abbreviations, or overly casual language.
+- Allow 24–48 hours for a response on weekdays. Emails sent on weekends or holidays will be   addressed on the next business day.
+- Consult the syllabus and course materials before submitting questions.
+- Failure to follow these guidelines may result in delayed or no response.
+
+**Example of a Proper Email** 
+
+Subject: SOC 140: Clarification on Assignment 2 Instructions
+
+Dear Professor Repetto,
+
+I hope this email finds you well. 
+
+My name is Jane Doe, and I am enrolled in SOC 140 this semester. I have a question regarding the instructions for Assignment 2. Specifically, I would like clarification on whether we should include both tables and figures in the results section, or if one format is sufficient.
+
+Thank you for your time and assistance.
+
+Sincerely,
+Jordan Smith
+
+**Example of a Poor Email**
+
+Subject: Question
+
+hey,
+I don’t get the homework. what r we supposed to do? can u explain?
+thx
+
+## Late Work Policy 
+
+Work that is submitted late will recieve a 10% penalty per day. After 5 days it will no longer be accepted. If you are in need of an extension, please reach out one week at least three days ahead of time with an explanation as to why an extension is needed and the length of an extension that you are requesting. No extensions are possible for the final paper. 
+
+## Academic Integrity Policy 
+
+*"As a Spartan, I will strive to uphold values of the highest ethical standard. I will practice honesty in my work, foster honesty in my peers, and take pride in knowing that honor is worth more than grades. I will carry these values beyond my time as a student at Michigan State University, continuing the endeavor to build personal integrity in all that I do."* 
+
+Plagarism is when you present someone else's work or ideas as your own, wihtout giving proper credit to the original source. When you use generative AI to help write papers, you may accidentally commit plagarism because the text produced is not originally yours. Using generative AI to write course assignments is not permitted. All sources cited in papers must be properly cited using ASA format. 
+
+## AI Policy 
+
+In this course, AI is not permitted during class to help with lab assignments. Although AI is a useful tool for coding, it necessitates an understanding of how to code to be utilized properly. However, AI can be used to assist with coding outside of class for the final project after the baseline understanding of coding is built throughout class. Additionally, you cannot use AI to generate content for the final paper, but you can use it to copy edit human written text. This means you may submit a completed paper and specifically ask it to "copy edit." You cannot ask it to expand on your text, write a section for you, etc. 
+
+If you use AI, you will be required to submit a memo disucssing how it was used, how you utiized the changes it made, what it did well, and what it did not do well, as well as a log of chats.
+
+## Required Materials
+
+We will be using R and R studio in this class. This is a free software that you can use in this classroom and download onto your personal computers to work on your projects at home. 
+
+## Course Schedule
+
+| Week | Date | Day | Topic |
+|------|------|-----|-------|
+| **Week One** | 8/26/25 | Tuesday | Introduction to the Course and CSS |
+| | 8/28/25 | Thursday | Introduction to Sociology |
+| **Week Two** | 9/2/25 | Tuesday | Introduction to R: Part One |
+| | 9/4/25 | Thursday | Introduction to R: Part Two |
+| **Week Three** | 9/9/25 | Tuesday | Data Sources: Lecture |
+| | 9/11/25 | Thursday | Data Sources: R Lab |
+| **Week Four** | 9/16/25 | Tuesday | Natural Language Processing: Lecture |
+| | 9/18/25 | Thursday | Natural Language Processing: R Lab | **Last day to drop with a refund**
+| **Week Five** | 9/23/25 | Tuesday | Social Network Analysis: Lecture |
+| | 9/25/25 | Thursday | Social Network Analysis: R Lab |
+| **Week Six** | 9/30/25 | Tuesday | Agent Based Modeling: Lecture |
+| | 10/2/25 | Thursday | Agent Based Modeling: R Lab |
+| **Week Seven** | 10/7/25 | Tuesday | LLMs and AI: Lecture |
+| | 10/9/25 | Thursday | LLMs and AI: R Lab | **10/13 is the last day to drop with no grade reported**
+| **Week Eight** | 10/14/25 | Tuesday | Supervised Machine Learning: Lecture |
+| | 10/16/25 | Thursday | Supervised Machine Learning: R Lab |
+| **Week Nine** | 10/21/25 | Tuesday | **Fall Break** |
+| | 10/23/25 | Thursday | Unsupervised Machine Learning: Lecture |
+| **Week Ten** | 10/28/25 | Tuesday |  Unsupervised Machine Learning: R Lab |
+| | 10/30/25 | Thursday | Project Ideas Workshop |
+| **Week Eleven** | 11/4/25 | Tuesday | Spatial Segregation: Lecture |
+| | 11/6/25 | Thursday | Spatial Segregation: Lab |
+| **Week Twelve** | 11/11/25 | Tuesday | Project Workshop |
+| | 11/13/25 | Thursday | Project Workshop |
+| **Week Thirteen** | 11/18/25 | Tuesday | Project Workshop |
+| | 11/20/25 | Thursday | Project Workshop |
+| **Week Fourteen** | 11/25/25 | Tuesday | **No class - practice final project presentations and additional office hours** |
+| | 11/27/25 | Thursday | **Thanksgiving Break**  |
+| **Week Fifteen** | 12/2/25 | Tuesday | Project Presentations |
+| | 12/4/25 | Thursday | Project Presentations |
+| **Finals Week** | 12/9/25 | Tuesday | No class  |
+| | 12/11/25 | Thursday | Optional class for questions | **Submit final projects by noon**
+
+<!-- ADD: Course overview, goals, and structure -->
+

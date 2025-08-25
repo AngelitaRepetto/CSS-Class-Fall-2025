@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computational Social Science - Lab One: Part Two</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Computational Social Science</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="./assignments/Lab One.html" rel="" target="">
+ <span class="dropdown-text">Lab One - Part One</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/Lab One Part Two.html" rel="" target="">
+ <span class="dropdown-text">Lab Two - Part Two</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Three</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Four</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Five</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Six</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Seven</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/projects.html" rel="" target="">
+ <span class="dropdown-text">Lab Eight</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Final Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+        <li>
+    <a class="dropdown-item" href="./resources/software.html" rel="" target="">
+ <span class="dropdown-text">Project Proposal</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./resources/tutorials.html" rel="" target="">
+ <span class="dropdown-text">Project Presentation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./resources/data.html" rel="" target="">
+ <span class="dropdown-text">Final Paper</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/[YOUR-USERNAME]/css-fall2025" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:[YOUR-EMAIL]" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lab One: Part Two</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-2-data-analysis-visualization-and-programming-60-minutes" id="toc-part-2-data-analysis-visualization-and-programming-60-minutes" class="nav-link active" data-scroll-target="#part-2-data-analysis-visualization-and-programming-60-minutes">Part 2: Data Analysis, Visualization, and Programming (60 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#advanced-data-exploration-15-minutes" id="toc-advanced-data-exploration-15-minutes" class="nav-link" data-scroll-target="#advanced-data-exploration-15-minutes">Advanced Data Exploration (15 minutes)</a></li>
+  <li><a href="#comprehensive-visualization-20-minutes" id="toc-comprehensive-visualization-20-minutes" class="nav-link" data-scroll-target="#comprehensive-visualization-20-minutes">Comprehensive Visualization (20 minutes)</a></li>
+  <li><a href="#statistical-analysis-15-minutes" id="toc-statistical-analysis-15-minutes" class="nav-link" data-scroll-target="#statistical-analysis-15-minutes">Statistical Analysis (15 minutes)</a></li>
+  <li><a href="#programming-in-r-functions-and-control-structures-10-minutes" id="toc-programming-in-r-functions-and-control-structures-10-minutes" class="nav-link" data-scroll-target="#programming-in-r-functions-and-control-structures-10-minutes">Programming in R: Functions and Control Structures (10 minutes)</a></li>
+  </ul></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises">Practice Exercises</a></li>
+  <li><a href="#click-to-see-exercise-2b-answer" id="toc-click-to-see-exercise-2b-answer" class="nav-link" data-scroll-target="#click-to-see-exercise-2b-answer">Click to see Exercise 2b Answer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab One: Part Two</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="part-2-data-analysis-visualization-and-programming-60-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-data-analysis-visualization-and-programming-60-minutes">Part 2: Data Analysis, Visualization, and Programming (60 minutes)</h2>
+<section id="advanced-data-exploration-15-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-data-exploration-15-minutes">Advanced Data Exploration (15 minutes)</h3>
+<p>Let’s work with R’s built-in datasets and explore more advanced data manipulation techniques.</p>
+<section id="loading-and-exploring-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="loading-and-exploring-datasets">Loading and Exploring Datasets</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Load the iris dataset
+data(iris)
+data(mtcars)
+
+# Explore iris dataset
+head(iris)
+str(iris)
+summary(iris)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Load the iris dataset
+data(iris)
+data(mtcars)
+
+# Explore iris dataset
+head(iris)
+str(iris)
+summary(iris)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-summary-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-summary-statistics">Advanced Summary Statistics</h4>
+<pre><code>#| echo: true
+#| eval: false
+# More detailed exploration
+sapply(iris[, 1:4], mean)  # Apply mean to numeric columns
+sapply(iris[, 1:4], sd)    # Standard deviation
+sapply(iris[, 1:4], range) # Range for each column</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# More detailed exploration
+sapply(iris[, 1:4], mean)  # Apply mean to numeric columns
+sapply(iris[, 1:4], sd)    # Standard deviation
+sapply(iris[, 1:4], range) # Range for each column</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="exploring-categorical-variables" class="level4">
+<h4 class="anchored" data-anchor-id="exploring-categorical-variables">Exploring Categorical Variables</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Exploring categorical variables
+table(iris$Species)
+prop.table(table(iris$Species))  # Proportions
+
+# Cross-tabulation with mtcars
+table(mtcars$cyl, mtcars$gear)
+prop.table(table(mtcars$cyl, mtcars$gear), margin = 1)  # Row proportions</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Exploring categorical variables
+table(iris$Species)
+prop.table(table(iris$Species))  # Proportions
+
+# Cross-tabulation with mtcars
+table(mtcars$cyl, mtcars$gear)
+prop.table(table(mtcars$cyl, mtcars$gear), margin = 1)  # Row proportions</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-filtering-and-subsetting" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-filtering-and-subsetting">Advanced Filtering and Subsetting</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Advanced filtering and subsetting
+# Multiple conditions
+large_setosa &lt;- iris[iris$Species == "setosa" &amp; iris$Sepal.Length &gt; 5, ]
+efficient_powerful &lt;- mtcars[mtcars$mpg &gt; 20 &amp; mtcars$hp &gt; 100, ]
+
+# Using %in% operator
+selected_species &lt;- iris[iris$Species %in% c("setosa", "versicolor"), ]
+
+print("Large setosa flowers:")
+print(large_setosa)
+print("Efficient and powerful cars:")
+print(efficient_powerful)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Advanced filtering and subsetting
+# Multiple conditions
+large_setosa &lt;- iris[iris$Species == "setosa" &amp; iris$Sepal.Length &gt; 5, ]
+efficient_powerful &lt;- mtcars[mtcars$mpg &gt; 20 &amp; mtcars$hp &gt; 100, ]
+
+# Using %in% operator
+selected_species &lt;- iris[iris$Species %in% c("setosa", "versicolor"), ]
+
+print("Large setosa flowers:")
+print(large_setosa)
+print("Efficient and powerful cars:")
+print(efficient_powerful)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="sampling-and-aggregating-data" class="level4">
+<h4 class="anchored" data-anchor-id="sampling-and-aggregating-data">Sampling and Aggregating Data</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Sampling data
+sample_rows &lt;- sample(nrow(iris), 10)  # Random 10 row indices
+iris_sample &lt;- iris[sample_rows, ]
+
+# Aggregating data
+# Average measurements by species
+aggregate(. ~ Species, data = iris, FUN = mean)
+
+# Multiple statistics
+aggregate(cbind(mpg, hp) ~ cyl, data = mtcars, 
+          FUN = function(x) c(mean = mean(x), sd = sd(x)))</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Sampling data
+sample_rows &lt;- sample(nrow(iris), 10)  # Random 10 row indices
+iris_sample &lt;- iris[sample_rows, ]
+
+print("Random sample of iris data:")
+print(iris_sample)
+
+# Aggregating data
+# Average measurements by species
+print("Average measurements by species:")
+print(aggregate(. ~ Species, data = iris, FUN = mean))
+
+# Multiple statistics
+print("MPG and HP statistics by cylinder:")
+print(aggregate(cbind(mpg, hp) ~ cyl, data = mtcars, 
+          FUN = function(x) c(mean = mean(x), sd = sd(x))))</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comprehensive-visualization-20-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="comprehensive-visualization-20-minutes">Comprehensive Visualization (20 minutes)</h3>
+<p>R’s plotting capabilities are extensive. Let’s explore various types of plots.</p>
+<section id="enhanced-histograms" class="level4">
+<h4 class="anchored" data-anchor-id="enhanced-histograms">Enhanced Histograms</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Basic plots with customization
+# Histogram with better styling
+hist(iris$Sepal.Length, 
+     main = "Distribution of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 15)
+
+# Add vertical line for mean
+abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "Mean", col = "red", lwd = 2, lty = 2)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Basic plots with customization
+# Histogram with better styling
+hist(iris$Sepal.Length, 
+     main = "Distribution of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 15)
+
+# Add vertical line for mean
+abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "Mean", col = "red", lwd = 2, lty = 2)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="scatter-plots-with-groups" class="level4">
+<h4 class="anchored" data-anchor-id="scatter-plots-with-groups">Scatter Plots with Groups</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Scatter plot with groups
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     main = "Sepal Length vs Width by Species",
+     xlab = "Sepal Length (cm)",
+     ylab = "Sepal Width (cm)",
+     col = c("red", "blue", "green")[iris$Species],
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = levels(iris$Species),
+       col = c("red", "blue", "green"),
+       pch = 19)
+
+# Add trend line
+abline(lm(Sepal.Width ~ Sepal.Length, data = iris), col = "black", lwd = 2)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Scatter plot with groups
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     main = "Sepal Length vs Width by Species",
+     xlab = "Sepal Length (cm)",
+     ylab = "Sepal Width (cm)",
+     col = c("red", "blue", "green")[iris$Species],
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = levels(iris$Species),
+       col = c("red", "blue", "green"),
+       pch = 19)
+
+# Add trend line
+abline(lm(Sepal.Width ~ Sepal.Length, data = iris), col = "black", lwd = 2)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plots" class="level4">
+<h4 class="anchored" data-anchor-id="box-plots">Box Plots</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Box plots
+boxplot(Sepal.Length ~ Species, data = iris,
+        main = "Sepal Length by Species",
+        xlab = "Species",
+        ylab = "Sepal Length (cm)",
+        col = c("red", "blue", "green"),
+        notch = TRUE)  # Show confidence intervals</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Box plots
+boxplot(Sepal.Length ~ Species, data = iris,
+        main = "Sepal Length by Species",
+        xlab = "Species",
+        ylab = "Sepal Length (cm)",
+        col = c("red", "blue", "green"),
+        notch = TRUE)  # Show confidence intervals</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-box-plots" class="level4">
+<h4 class="anchored" data-anchor-id="multiple-box-plots">Multiple Box Plots</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Multiple box plots
+par(mfrow = c(2, 2))  # 2x2 layout
+boxplot(mpg ~ cyl, data = mtcars, main = "MPG by Cylinders", col = "lightblue")
+boxplot(hp ~ cyl, data = mtcars, main = "HP by Cylinders", col = "lightgreen")
+boxplot(wt ~ cyl, data = mtcars, main = "Weight by Cylinders", col = "lightcoral")
+boxplot(qsec ~ cyl, data = mtcars, main = "Quarter Mile Time by Cylinders", col = "lightyellow")
+par(mfrow = c(1, 1))  # Reset layout</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Multiple box plots
+par(mfrow = c(2, 2))  # 2x2 layout
+boxplot(mpg ~ cyl, data = mtcars, main = "MPG by Cylinders", col = "lightblue")
+boxplot(hp ~ cyl, data = mtcars, main = "HP by Cylinders", col = "lightgreen")
+boxplot(wt ~ cyl, data = mtcars, main = "Weight by Cylinders", col = "lightcoral")
+boxplot(qsec ~ cyl, data = mtcars, main = "Quarter Mile Time by Cylinders", col = "lightyellow")
+par(mfrow = c(1, 1))  # Reset layout</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-plots" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-plots">Advanced Plots</h4>
+<pre><code>#| echo: true
+#| eval: false
+# More advanced plots
+# Pairs plot (scatter plot matrix)
+pairs(iris[, 1:4], 
+      main = "Iris Dataset - Pairwise Relationships",
+      col = c("red", "blue", "green")[iris$Species],
+      pch = 19)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# More advanced plots
+# Pairs plot (scatter plot matrix)
+pairs(iris[, 1:4], 
+      main = "Iris Dataset - Pairwise Relationships",
+      col = c("red", "blue", "green")[iris$Species],
+      pch = 19)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plots" class="level4">
+<h4 class="anchored" data-anchor-id="density-plots">Density Plots</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Density plots
+plot(density(iris$Sepal.Length), 
+     main = "Density Plot of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Density",
+     col = "blue",
+     lwd = 2)
+
+# Add density lines for each species
+species_colors &lt;- c("red", "blue", "green")
+for(i in 1:3) {
+  species_data &lt;- iris[iris$Species == levels(iris$Species)[i], "Sepal.Length"]
+  lines(density(species_data), col = species_colors[i], lwd = 2)
+}
+legend("topright", legend = levels(iris$Species), col = species_colors, lwd = 2)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Density plots
+plot(density(iris$Sepal.Length), 
+     main = "Density Plot of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Density",
+     col = "blue",
+     lwd = 2)
+
+# Add density lines for each species
+species_colors &lt;- c("red", "blue", "green")
+for(i in 1:3) {
+  species_data &lt;- iris[iris$Species == levels(iris$Species)[i], "Sepal.Length"]
+  lines(density(species_data), col = species_colors[i], lwd = 2)
+}
+legend("topright", legend = levels(iris$Species), col = species_colors, lwd = 2)</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-analysis-15-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-analysis-15-minutes">Statistical Analysis (15 minutes)</h3>
+<p>Let’s perform various statistical tests and create models.</p>
+<section id="custom-descriptive-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="custom-descriptive-statistics">Custom Descriptive Statistics</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Descriptive statistics
+# Custom summary function
+describe_variable &lt;- function(x) {
+  c(mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE))
+}
+
+describe_variable(iris$Sepal.Length)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Descriptive statistics
+# Custom summary function
+describe_variable &lt;- function(x) {
+  c(mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE))
+}
+
+describe_variable(iris$Sepal.Length)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="correlation-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Correlation analysis
+# Correlation matrix
+cor_matrix &lt;- cor(iris[, 1:4])
+print(round(cor_matrix, 2))
+
+# Correlation test
+cor.test(iris$Sepal.Length, iris$Sepal.Width)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Correlation analysis
+# Correlation matrix
+cor_matrix &lt;- cor(iris[, 1:4])
+print(round(cor_matrix, 2))
+
+# Correlation test
+cor.test(iris$Sepal.Length, iris$Sepal.Width)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="hypothesis-testing" class="level4">
+<h4 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Hypothesis testing
+# t-test: comparing two groups
+setosa_sepal &lt;- iris[iris$Species == "setosa", "Sepal.Length"]
+versicolor_sepal &lt;- iris[iris$Species == "versicolor", "Sepal.Length"]
+
+t_test_result &lt;- t.test(setosa_sepal, versicolor_sepal)
+print(t_test_result)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Hypothesis testing
+# t-test: comparing two groups
+setosa_sepal &lt;- iris[iris$Species == "setosa", "Sepal.Length"]
+versicolor_sepal &lt;- iris[iris$Species == "versicolor", "Sepal.Length"]
+
+t_test_result &lt;- t.test(setosa_sepal, versicolor_sepal)
+print(t_test_result)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="anova-and-post-hoc-tests" class="level4">
+<h4 class="anchored" data-anchor-id="anova-and-post-hoc-tests">ANOVA and Post-hoc Tests</h4>
+<pre><code>#| echo: true
+#| eval: false
+# ANOVA: comparing multiple groups
+anova_result &lt;- aov(Sepal.Length ~ Species, data = iris)
+summary(anova_result)
+
+# Post-hoc test
+TukeyHSD(anova_result)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# ANOVA: comparing multiple groups
+anova_result &lt;- aov(Sepal.Length ~ Species, data = iris)
+summary(anova_result)
+
+# Post-hoc test
+TukeyHSD(anova_result)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-regression" class="level4">
+<h4 class="anchored" data-anchor-id="linear-regression">Linear Regression</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Linear regression
+# Simple linear regression
+model1 &lt;- lm(mpg ~ wt, data = mtcars)
+summary(model1)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Linear regression
+# Simple linear regression
+model1 &lt;- lm(mpg ~ wt, data = mtcars)
+summary(model1)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-linear-regression-and-model-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="multiple-linear-regression-and-model-comparison">Multiple Linear Regression and Model Comparison</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Multiple linear regression
+model2 &lt;- lm(mpg ~ wt + hp + cyl, data = mtcars)
+summary(model2)
+
+# Model comparison
+anova(model1, model2)
+
+# Predictions
+new_car &lt;- data.frame(wt = 3.0, hp = 150, cyl = 6)
+predicted_mpg &lt;- predict(model2, new_car)
+print(paste("Predicted MPG:", round(predicted_mpg, 2)))</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Multiple linear regression
+model2 &lt;- lm(mpg ~ wt + hp + cyl, data = mtcars)
+summary(model2)
+
+# Model comparison
+anova(model1, model2)
+
+# Predictions
+new_car &lt;- data.frame(wt = 3.0, hp = 150, cyl = 6)
+predicted_mpg &lt;- predict(model2, new_car)
+print(paste("Predicted MPG:", round(predicted_mpg, 2)))</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="programming-in-r-functions-and-control-structures-10-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="programming-in-r-functions-and-control-structures-10-minutes">Programming in R: Functions and Control Structures (10 minutes)</h3>
+<p>Learning to write functions and use control structures makes R much more powerful.</p>
+<section id="writing-custom-functions" class="level4">
+<h4 class="anchored" data-anchor-id="writing-custom-functions">Writing Custom Functions</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Writing custom functions
+grade_to_letter &lt;- function(numeric_grade) {
+  if (numeric_grade &gt;= 90) {
+    return("A")
+  } else if (numeric_grade &gt;= 80) {
+    return("B")
+  } else if (numeric_grade &gt;= 70) {
+    return("C")
+  } else if (numeric_grade &gt;= 60) {
+    return("D")
+  } else {
+    return("F")
+  }
+}
+
+# Test the function
+grade_to_letter(85)
+grade_to_letter(92)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Writing custom functions
+grade_to_letter &lt;- function(numeric_grade) {
+  if (numeric_grade &gt;= 90) {
+    return("A")
+  } else if (numeric_grade &gt;= 80) {
+    return("B")
+  } else if (numeric_grade &gt;= 70) {
+    return("C")
+  } else if (numeric_grade &gt;= 60) {
+    return("D")
+  } else {
+    return("F")
+  }
+}
+
+# Test the function
+grade_to_letter(85)
+grade_to_letter(92)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="vectorized-functions" class="level4">
+<h4 class="anchored" data-anchor-id="vectorized-functions">Vectorized Functions</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Vectorized version
+grade_to_letter_vec &lt;- function(grades) {
+  ifelse(grades &gt;= 90, "A",
+         ifelse(grades &gt;= 80, "B",
+                ifelse(grades &gt;= 70, "C",
+                       ifelse(grades &gt;= 60, "D", "F"))))
+}
+
+test_grades &lt;- c(95, 87, 78, 65, 45)
+grade_to_letter_vec(test_grades)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Vectorized version
+grade_to_letter_vec &lt;- function(grades) {
+  ifelse(grades &gt;= 90, "A",
+         ifelse(grades &gt;= 80, "B",
+                ifelse(grades &gt;= 70, "C",
+                       ifelse(grades &gt;= 60, "D", "F"))))
+}
+
+test_grades &lt;- c(95, 87, 78, 65, 45)
+grade_to_letter_vec(test_grades)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="loops-and-control-structures" class="level4">
+<h4 class="anchored" data-anchor-id="loops-and-control-structures">Loops and Control Structures</h4>
+<pre><code>#| echo: true
+#| eval: false
+# For loop
+fibonacci &lt;- function(n) {
+  if (n &lt;= 1) return(n)
+  
+  fib_seq &lt;- numeric(n)
+  fib_seq[1] &lt;- 0
+  fib_seq[2] &lt;- 1
+  
+  for (i in 3:n) {
+    fib_seq[i] &lt;- fib_seq[i-1] + fib_seq[i-2]
+  }
+  
+  return(fib_seq)
+}
+
+fibonacci(10)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# For loop
+fibonacci &lt;- function(n) {
+  if (n &lt;= 1) return(n)
+  
+  fib_seq &lt;- numeric(n)
+  fib_seq[1] &lt;- 0
+  fib_seq[2] &lt;- 1
+  
+  for (i in 3:n) {
+    fib_seq[i] &lt;- fib_seq[i-1] + fib_seq[i-2]
+  }
+  
+  return(fib_seq)
+}
+
+fibonacci(10)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="while-loops" class="level4">
+<h4 class="anchored" data-anchor-id="while-loops">While Loops</h4>
+<pre><code>#| echo: true
+#| eval: false
+# While loop example
+count_down &lt;- function(start) {
+  current &lt;- start
+  result &lt;- c()
+  
+  while (current &gt; 0) {
+    result &lt;- c(result, current)
+    current &lt;- current - 1
+  }
+  
+  return(result)
+}
+
+count_down(5)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# While loop example
+count_down &lt;- function(start) {
+  current &lt;- start
+  result &lt;- c()
+  
+  while (current &gt; 0) {
+    result &lt;- c(result, current)
+    current &lt;- current - 1
+  }
+  
+  return(result)
+}
+
+count_down(5)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="apply-family-functions" class="level4">
+<h4 class="anchored" data-anchor-id="apply-family-functions">Apply Family Functions</h4>
+<pre><code>#| echo: true
+#| eval: false
+# Apply family functions (more efficient than loops)
+# lapply: apply function to list elements
+numbers &lt;- list(a = 1:5, b = 6:10, c = 11:15)
+lapply(numbers, mean)
+
+# sapply: simplified apply
+sapply(numbers, mean)
+
+# mapply: multivariate apply
+mapply(function(x, y) x + y, 1:3, 4:6)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Show Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: false
+#| eval: true
+# Apply family functions (more efficient than loops)
+# lapply: apply function to list elements
+numbers &lt;- list(a = 1:5, b = 6:10, c = 11:15)
+lapply(numbers, mean)
+
+# sapply: simplified apply
+sapply(numbers, mean)
+
+# mapply: multivariate apply
+mapply(function(x, y) x + y, 1:3, 4:6)</code></pre>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="practice-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="practice-exercises">Practice Exercises</h2>
+<p><strong>🔍 Exercise 2a:</strong> Create a function that calculates the coefficient of variation (CV = sd/mean) for a numeric vector. Test it on the Sepal.Length column of the iris dataset for each species.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see Exercise 2a Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre><code>#| echo: true
+#| eval: true
+# Create coefficient of variation function
+coeff_variation &lt;- function(x) {
+  cv &lt;- sd(x, na.rm = TRUE) / mean(x, na.rm = TRUE)
+  return(cv)
+}
+
+# Test on Sepal.Length for each species
+species_list &lt;- levels(iris$Species)
+cv_results &lt;- sapply(species_list, function(species) {
+  species_data &lt;- iris[iris$Species == species, "Sepal.Length"]
+  coeff_variation(species_data)
+})
+
+print("Coefficient of Variation for Sepal.Length by Species:")
+print(round(cv_results, 4))
+
+# Alternative approach using aggregate
+cv_by_species &lt;- aggregate(Sepal.Length ~ Species, data = iris, 
+                          FUN = function(x) sd(x)/mean(x))
+print("Using aggregate function:")
+print(cv_by_species)</code></pre>
+<p>The coefficient of variation measures relative variability. Lower values indicate less variability relative to the mean. Setosa has the lowest CV, indicating more consistent sepal lengths within that species.</p>
+</div>
+</div>
+</div>
+<p><strong>🔍 Exercise 2b:</strong> Using the mtcars dataset, create a comprehensive analysis that includes:</p>
+<ul>
+<li></li>
+<li><p>A summary of the data</p></li>
+<li></li>
+<li><p>A correlation matrix of all numeric variables</p></li>
+<li></li>
+<li><p>A linear model predicting mpg from weight and horsepower</p></li>
+<li></li>
+<li><p>A visualization showing the relationship between weight and mpg with different colors for number of cylinders</p></li>
+<li></li>
+</ul>
+<p>::: {.callout-note collapse=“true”}</p>
+</section>
+<section id="click-to-see-exercise-2b-answer" class="level2">
+<h2 class="anchored" data-anchor-id="click-to-see-exercise-2b-answer">Click to see Exercise 2b Answer</h2>
+<pre><code>#| echo: true
+#| eval: true
+# Comprehensive mtcars analysis
+
+# 1. Summary of the data
+print("=== MTCARS DATASET SUMMARY ===")
+print(summary(mtcars))
+print(paste("Dataset dimensions:", nrow(mtcars), "rows,", ncol(mtcars), "columns"))
+
+# 2. Correlation matrix of all numeric variables
+print("\n=== CORRELATION MATRIX ===")
+cor_matrix &lt;- cor(mtcars)
+print(round(cor_matrix, 2))
+
+# 3. Linear model predicting mpg from weight and horsepower
+print("\n=== LINEAR REGRESSION MODEL ===")
+mpg_model &lt;- lm(mpg ~ wt + hp, data = mtcars)
+print(summary(mpg_model))
+
+# Model interpretation
+r_squared &lt;- summary(mpg_model)$r.squared
+print(paste("R-squared:", round(r_squared, 3)))
+print(paste("The model explains", round(r_squared * 100, 1), "% of the variance in MPG"))
+
+# 4. Visualization: Weight vs MPG colored by cylinders
+print("\n=== VISUALIZATION ===")
+# Create color vector for cylinders
+cyl_colors &lt;- c("red", "blue", "green")[as.factor(mtcars$cyl)]
+
+plot(mtcars$wt, mtcars$mpg,
+     main = "MPG vs Weight by Number of Cylinders",
+     xlab = "Weight (1000 lbs)",
+     ylab = "Miles Per Gallon",
+     col = cyl_colors,
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = paste(sort(unique(mtcars$cyl)), "cylinders"),
+       col = c("red", "blue", "green"),
+       pch = 19,
+       title = "Engine")
+
+# Add regression line
+abline(lm(mpg ~ wt, data = mtcars), col = "black", lwd = 2, lty = 2)
+
+# Add text annotation
+text(4.5, 30, paste("R² =", round(summary(lm(mpg ~ wt, data = mtcars))$r.squared, 3)),
+     cex = 0.9, col = "black")</code></pre>
+<p><strong>Key Findings:</strong></p>
+<ul>
+<li></li>
+<li><p><strong>Correlation</strong>: Weight (wt) and horsepower (hp) are strongly negatively correlated with MPG</p></li>
+<li></li>
+<li><p><strong>Model</strong>: The regression model explains about 83% of MPG variance using weight and horsepower</p></li>
+<li></li>
+<li><p><strong>Visualization</strong>: Cars with fewer cylinders tend to be lighter and more fuel-efficient</p></li>
+<li></li>
+<li><p><strong>Relationship</strong>: Clear negative relationship between weight and MPG across all cylinder groups :::</p></li>
+<li></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2025 [YOUR NAME]</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/[YOUR-USERNAME]/css-fall2025">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

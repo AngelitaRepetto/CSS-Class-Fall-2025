@@ -1,0 +1,355 @@
+---
+title: "Schedule"
+---
+
+<!-- Note: This schedule is subject to change. Check back regularly for updates. -->
+
+## Course Schedule
+
+Subject to change - check here for most up to date class schedule. 
+
+### Week 1: Introduction
+
+**Tuesday - 8/26/25**
+
+*Topics:*
+
+- Introduction to the course
+
+- Introduction to Computational Social Science
+
+*Readings:*
+
+- Cioffi-Revilla, Claudio. 2010. “Computational Social Science.” Wiley Interdisciplinary Reviews:            Computational Statistics 2(3):259–71. 
+
+- Edelmann, A., Wolff, T., Montagne, D., & Bail, C. A. (2020). Computational social science and            sociology. Annual Review of Sociology, 46, 61-81.
+
+- Evans, James and Jacob G. Foster. 2019. “Computation and the Sociological Imagination.” Contexts          18(4):10–15. 
+
+**Thursday - 8/28/25**
+
+*Topics:*
+
+- Introduction to Sociology 
+
+*Readings:*
+
+- https://www.asanet.org/wp-content/uploads/savvy/introtosociology/Documents/Field%20of%20sociology033108.htm
+
+---
+
+### Week 2: Introduction to R
+
+**Tuesday - 9/2/25**
+
+*Topics:*
+
+- Introduction to R - Part One 
+
+*Due:*
+
+- Introduction worksheet.  
+
+**Thursday - 9/4/25**
+
+*Topics:*
+
+- Introduction to R - Part Two 
+
+*Due:*
+
+- Download R and R Studio on your personal laptops. 
+
+---
+
+### Week 3: Data Sources 
+
+**Tuesday - 9/9/25**
+
+*Topics:*
+
+- Data Sources - Lecture
+
+*Readings:*
+
+- Lazer, David, and Jason Radford. 2017. “Data ex Machina: Introduction to Big Data.” Annual Review         of Sociology 43: 19-39 
+
+**Thursday - 9/11/25**
+
+*Topics:*
+
+- Data Sources - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday.  
+
+### Week 4: Natural Language Processing  
+
+**Tuesday - 9/16/25**
+
+*Topics:*
+
+- Natural Language Processing - Lecture
+
+*Readings:*
+
+- Bail, Christopher A., Taylor W. Brown, and Marcus Mann. 2017. “Channeling Hearts and Minds:                Advocacy Organizations, Cognitive-Emotional Currents, and Public Conversation.” American           Sociological Review 82(6):1188–1213. 
+
+**Thursday - 9/18/25**
+
+*Topics:*
+
+- Natural Language Processing - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 5: Social Network Analysis
+
+**Tuesday - 9/23/25**
+
+*Topics:*
+
+- Social Network Analysis - Lecture
+
+*Readings:*
+
+- Tabassum, Shazia, Fabiola S. Pereira, Sofia Fernandes, and João Gama. 2018. “Social Network            Analysis: An Overview.” WIREs Data Mining and Knowledge Discovery 8(5). 
+
+**Thursday - 9/25/25**
+
+*Topics:*
+
+- Social Network Analysis - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 6: Agent Based Modeling
+
+**Tuesday - 9/30/25**
+
+*Topics:*
+
+- Agent Based Modeling - Lecture
+
+*Readings:*
+
+- Dacrema, Eugenio, and Stefano Benati. 2020. “The Mechanics of Contentious Politics: An                 Agent-Based Modeling Approach.” The Journal of Mathematical Sociology 44(3):163–98.                doi:10.1080/0022250X.2020.1753187.
+
+
+**Thursday - 10/2/25**
+
+*Topics:*
+
+- Agent Based Modeling - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 7: LLMs and AI
+
+**Tuesday - 10/7/25**
+
+*Topics:*
+
+- LLMs and AI - Lecture
+
+*Readings:*
+
+- Davidson, Thomas, and Daniel Karell. 2025. “Integrating Generative Artificial Intelligence into        Social Science Research: Measurement, Prompting, and Simulation.” Sociological Methods &           Research 54(3):775–93. doi:10.1177/00491241251339184.
+
+
+**Thursday - 10/9/25**
+
+*Topics:*
+
+- LLMs and AI - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 8: Supervised Machine Learning 
+
+**Tuesday - 10/14/25**
+
+*Topics:*
+
+- Supervised Machine Learning - Lecture
+
+*Readings:*
+
+- [READINGS]
+
+**Thursday - 10/16/25**
+
+*Topics:*
+
+- Supervised Machine Learning - Lab
+
+*Readings:*
+
+- [READINGS]
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 9: Unsupervised Machine Learning Part I
+
+**Tuesday - 10/21/25 [No Class - Fall Break]**
+
+**Thursday - 10/23/25**
+
+*Topics:*
+
+- Unsupervised Machine Learning - Guest Lecture
+
+*Readings:*
+
+- [READINGS]
+
+*Due:*
+
+- Nothing due this week. 
+
+### Week 10: Unsupervised Machine Learning part II
+
+**Tuesday - 10/28/25**
+
+*Topics:*
+
+- Unsupervised Machine Learning - Lab 
+
+*Readings:*
+
+- [READINGS]
+
+**Thursday - 10/30/25**
+
+*Topics:*
+
+- Project Ideas Workshop 
+
+*Readings:*
+
+- [READINGS]
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+- Project proposals due on Canvas at 11/5/25 11:59 pm. 
+
+### Week 11: Spatial Segregation 
+
+**Tuesday - 11/4/25**
+
+*Topics:*
+
+- Spatial Segregation - Lecture
+
+*Readings:*
+
+- Brazil, N. (2017). Spatial variation in the hispanic paradox: Mortality rates in new and                 established hispanic US destinations. Population, Space and Place, 23(1), e1968.
+
+- Crowder, Kyle and Scott J. South. 2008.“Spatial Dynamics of White Flight: The Effects of Local          and Extralocal Racial Conditions on Neighborhood Out-Migration.” American Sociological             Review 73(5):792–812. 
+
+**Thursday - 11/6/25**
+
+*Topics:*
+
+- Spatial Segregation - Lab
+
+*Due:*
+
+- Submit lab at the end of class on Thursday. 
+
+### Week 12: Project Workshop
+
+**Tuesday - 11/11/25**
+
+*Topics:*
+
+- Project workshop  
+
+**Thursday - 11/13/25**
+
+*Topics:*
+
+- Project workshop  
+
+### Week 13: Project Workshop
+
+**Tuesday - 11/18/25**
+
+*Topics:*
+
+- Project workshop  
+
+**Thursday - 11/120/25**
+
+*Topics:*
+
+- Project workshop  
+
+### Week 14: No Class 
+
+**Tuesday - 11/18/25**
+
+- Practice presentations at home 
+
+- Additional zoom office hours for project questions 
+
+**Thursday - 11/20/25**
+
+- Thanksgiving 
+
+### Week 15: Project Presentations 
+
+**Tuesday - 11/4/25**
+
+*Topics:*
+
+- Project Presentations
+
+**Thursday - 11/6/25**
+
+*Topics:*
+
+- Project Presentations
+
+- Project Presentations 
+
+*Due:*
+
+- Submit presentation slides on Monday 12/1/25 at 5 pm. 
+
+### Week 16: Finals Week - No Class 
+
+**Thursday - 12/11/25**
+
+*Due:*
+
+- Submit final papers 12/11/25 at 11:59. 
+
+## Assignment Due Dates 
+
+| Date | Event |
+|------|--------|
+| 9/11/25 12 pm | Lab One |
+| 9/18/25 12 pm | Lab Two  |
+| 9/25/25 12 pm | Lab Three |
+| 10/2/25 12 pm | Lab Four |
+| 10/9/25 12 pm | Lab Five |
+| 10/16/25 12 pm | Lab Six |
+| 10/30/25 12 pm | Lab Seven |
+| 11/2/25 12 pm | Project Proposal |
+| 11/6/25 12 pm | Lab Eight |
+| 12/1/25 11:59 pm | Project Presentation Slides |
+| 12/11/25 11:59 pm | Final Paper |

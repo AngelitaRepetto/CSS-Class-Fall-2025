@@ -1,0 +1,30 @@
+---
+title: "Data Sources"
+---
+
+<!-- ADD: Relevant data sources for your course -->
+
+## [DATA CATEGORY 1]
+- **[Source Name]**: [URL or description]
+- **[Source Name]**: [URL or description]
+- **[Source Name]**: [URL or description]
+
+## [DATA CATEGORY 2]
+- **[Source Name]**: [URL or description]
+- **[Source Name]**: [URL or description]
+- **[Source Name]**: [URL or description]
+
+## Data Ethics and Access
+
+<!-- ADD: Guidelines for ethical data use -->
+
+### Best Practices
+- [Best practice 1]
+- [Best practice 2]
+- [Best practice 3]
+
+### Ethical Considerations
+- [Ethical consideration 1]
+- [Ethical consideration 2]
+- [Ethical consideration 3]
+

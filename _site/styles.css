@@ -1,0 +1,43 @@
+/* Custom MSU Styling */
+:root {
+  --primary-color: #18453B;
+  --secondary-color: #A3B3A4;
+  --accent-color: #B6BF00;
+  --text-color: #1A1A1A;
+  --background-color: #FFFFFF;
+  --light-gray: #F1F3F2;
+}
+/* Apply to body and headings */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+h1, h2, h3, h4 {
+  color: var(--primary-color);
+}
+a {
+  color: var(--primary-color);
+}
+a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+.navbar a {
+  color: white !important;
+}
+
+/* Dropdown menu styling */
+.navbar .dropdown-menu {
+  background-color: white;
+}
+.navbar .dropdown-menu a {
+  color: var(--primary-color) !important;
+}
+.navbar .dropdown-menu a:hover {
+  background-color: var(--light-gray);
+  color: var(--primary-color) !important;
+}

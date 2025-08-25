@@ -1,0 +1,931 @@
+---
+title: "Lab One: Part Two"
+editor: visual
+---
+
+## Part 2: Data Analysis, Visualization, and Programming (60 minutes)
+
+### Advanced Data Exploration (15 minutes)
+
+Let's work with R's built-in datasets and explore more advanced data manipulation techniques.
+
+#### Loading and Exploring Datasets
+
+```{r}
+#| echo: true
+#| eval: false
+# Load the iris dataset
+data(iris)
+data(mtcars)
+
+# Explore iris dataset
+head(iris)
+str(iris)
+summary(iris)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Load the iris dataset
+data(iris)
+data(mtcars)
+
+# Explore iris dataset
+head(iris)
+str(iris)
+summary(iris)
+```
+:::
+
+#### Advanced Summary Statistics
+
+```{r}
+#| echo: true
+#| eval: false
+# More detailed exploration
+sapply(iris[, 1:4], mean)  # Apply mean to numeric columns
+sapply(iris[, 1:4], sd)    # Standard deviation
+sapply(iris[, 1:4], range) # Range for each column
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# More detailed exploration
+sapply(iris[, 1:4], mean)  # Apply mean to numeric columns
+sapply(iris[, 1:4], sd)    # Standard deviation
+sapply(iris[, 1:4], range) # Range for each column
+```
+:::
+
+#### Exploring Categorical Variables
+
+```{r}
+#| echo: true
+#| eval: false
+# Exploring categorical variables
+table(iris$Species)
+prop.table(table(iris$Species))  # Proportions
+
+# Cross-tabulation with mtcars
+table(mtcars$cyl, mtcars$gear)
+prop.table(table(mtcars$cyl, mtcars$gear), margin = 1)  # Row proportions
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Exploring categorical variables
+table(iris$Species)
+prop.table(table(iris$Species))  # Proportions
+
+# Cross-tabulation with mtcars
+table(mtcars$cyl, mtcars$gear)
+prop.table(table(mtcars$cyl, mtcars$gear), margin = 1)  # Row proportions
+```
+:::
+
+#### Advanced Filtering and Subsetting
+
+```{r}
+#| echo: true
+#| eval: false
+# Advanced filtering and subsetting
+# Multiple conditions
+large_setosa <- iris[iris$Species == "setosa" & iris$Sepal.Length > 5, ]
+efficient_powerful <- mtcars[mtcars$mpg > 20 & mtcars$hp > 100, ]
+
+# Using %in% operator
+selected_species <- iris[iris$Species %in% c("setosa", "versicolor"), ]
+
+print("Large setosa flowers:")
+print(large_setosa)
+print("Efficient and powerful cars:")
+print(efficient_powerful)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Advanced filtering and subsetting
+# Multiple conditions
+large_setosa <- iris[iris$Species == "setosa" & iris$Sepal.Length > 5, ]
+efficient_powerful <- mtcars[mtcars$mpg > 20 & mtcars$hp > 100, ]
+
+# Using %in% operator
+selected_species <- iris[iris$Species %in% c("setosa", "versicolor"), ]
+
+print("Large setosa flowers:")
+print(large_setosa)
+print("Efficient and powerful cars:")
+print(efficient_powerful)
+```
+:::
+
+#### Sampling and Aggregating Data
+
+```{r}
+#| echo: true
+#| eval: false
+# Sampling data
+sample_rows <- sample(nrow(iris), 10)  # Random 10 row indices
+iris_sample <- iris[sample_rows, ]
+
+# Aggregating data
+# Average measurements by species
+aggregate(. ~ Species, data = iris, FUN = mean)
+
+# Multiple statistics
+aggregate(cbind(mpg, hp) ~ cyl, data = mtcars, 
+          FUN = function(x) c(mean = mean(x), sd = sd(x)))
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Sampling data
+sample_rows <- sample(nrow(iris), 10)  # Random 10 row indices
+iris_sample <- iris[sample_rows, ]
+
+print("Random sample of iris data:")
+print(iris_sample)
+
+# Aggregating data
+# Average measurements by species
+print("Average measurements by species:")
+print(aggregate(. ~ Species, data = iris, FUN = mean))
+
+# Multiple statistics
+print("MPG and HP statistics by cylinder:")
+print(aggregate(cbind(mpg, hp) ~ cyl, data = mtcars, 
+          FUN = function(x) c(mean = mean(x), sd = sd(x))))
+```
+:::
+
+### Comprehensive Visualization (20 minutes)
+
+R's plotting capabilities are extensive. Let's explore various types of plots.
+
+#### Enhanced Histograms
+
+```{r}
+#| echo: true
+#| eval: false
+# Basic plots with customization
+# Histogram with better styling
+hist(iris$Sepal.Length, 
+     main = "Distribution of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 15)
+
+# Add vertical line for mean
+abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "Mean", col = "red", lwd = 2, lty = 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Basic plots with customization
+# Histogram with better styling
+hist(iris$Sepal.Length, 
+     main = "Distribution of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 15)
+
+# Add vertical line for mean
+abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "Mean", col = "red", lwd = 2, lty = 2)
+```
+:::
+
+#### Scatter Plots with Groups
+
+```{r}
+#| echo: true
+#| eval: false
+# Scatter plot with groups
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     main = "Sepal Length vs Width by Species",
+     xlab = "Sepal Length (cm)",
+     ylab = "Sepal Width (cm)",
+     col = c("red", "blue", "green")[iris$Species],
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = levels(iris$Species),
+       col = c("red", "blue", "green"),
+       pch = 19)
+
+# Add trend line
+abline(lm(Sepal.Width ~ Sepal.Length, data = iris), col = "black", lwd = 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Scatter plot with groups
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     main = "Sepal Length vs Width by Species",
+     xlab = "Sepal Length (cm)",
+     ylab = "Sepal Width (cm)",
+     col = c("red", "blue", "green")[iris$Species],
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = levels(iris$Species),
+       col = c("red", "blue", "green"),
+       pch = 19)
+
+# Add trend line
+abline(lm(Sepal.Width ~ Sepal.Length, data = iris), col = "black", lwd = 2)
+```
+:::
+
+#### Box Plots
+
+```{r}
+#| echo: true
+#| eval: false
+# Box plots
+boxplot(Sepal.Length ~ Species, data = iris,
+        main = "Sepal Length by Species",
+        xlab = "Species",
+        ylab = "Sepal Length (cm)",
+        col = c("red", "blue", "green"),
+        notch = TRUE)  # Show confidence intervals
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Box plots
+boxplot(Sepal.Length ~ Species, data = iris,
+        main = "Sepal Length by Species",
+        xlab = "Species",
+        ylab = "Sepal Length (cm)",
+        col = c("red", "blue", "green"),
+        notch = TRUE)  # Show confidence intervals
+```
+:::
+
+#### Multiple Box Plots
+
+```{r}
+#| echo: true
+#| eval: false
+# Multiple box plots
+par(mfrow = c(2, 2))  # 2x2 layout
+boxplot(mpg ~ cyl, data = mtcars, main = "MPG by Cylinders", col = "lightblue")
+boxplot(hp ~ cyl, data = mtcars, main = "HP by Cylinders", col = "lightgreen")
+boxplot(wt ~ cyl, data = mtcars, main = "Weight by Cylinders", col = "lightcoral")
+boxplot(qsec ~ cyl, data = mtcars, main = "Quarter Mile Time by Cylinders", col = "lightyellow")
+par(mfrow = c(1, 1))  # Reset layout
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Multiple box plots
+par(mfrow = c(2, 2))  # 2x2 layout
+boxplot(mpg ~ cyl, data = mtcars, main = "MPG by Cylinders", col = "lightblue")
+boxplot(hp ~ cyl, data = mtcars, main = "HP by Cylinders", col = "lightgreen")
+boxplot(wt ~ cyl, data = mtcars, main = "Weight by Cylinders", col = "lightcoral")
+boxplot(qsec ~ cyl, data = mtcars, main = "Quarter Mile Time by Cylinders", col = "lightyellow")
+par(mfrow = c(1, 1))  # Reset layout
+```
+:::
+
+#### Advanced Plots
+
+```{r}
+#| echo: true
+#| eval: false
+# More advanced plots
+# Pairs plot (scatter plot matrix)
+pairs(iris[, 1:4], 
+      main = "Iris Dataset - Pairwise Relationships",
+      col = c("red", "blue", "green")[iris$Species],
+      pch = 19)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# More advanced plots
+# Pairs plot (scatter plot matrix)
+pairs(iris[, 1:4], 
+      main = "Iris Dataset - Pairwise Relationships",
+      col = c("red", "blue", "green")[iris$Species],
+      pch = 19)
+```
+:::
+
+#### Density Plots
+
+```{r}
+#| echo: true
+#| eval: false
+# Density plots
+plot(density(iris$Sepal.Length), 
+     main = "Density Plot of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Density",
+     col = "blue",
+     lwd = 2)
+
+# Add density lines for each species
+species_colors <- c("red", "blue", "green")
+for(i in 1:3) {
+  species_data <- iris[iris$Species == levels(iris$Species)[i], "Sepal.Length"]
+  lines(density(species_data), col = species_colors[i], lwd = 2)
+}
+legend("topright", legend = levels(iris$Species), col = species_colors, lwd = 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Density plots
+plot(density(iris$Sepal.Length), 
+     main = "Density Plot of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Density",
+     col = "blue",
+     lwd = 2)
+
+# Add density lines for each species
+species_colors <- c("red", "blue", "green")
+for(i in 1:3) {
+  species_data <- iris[iris$Species == levels(iris$Species)[i], "Sepal.Length"]
+  lines(density(species_data), col = species_colors[i], lwd = 2)
+}
+legend("topright", legend = levels(iris$Species), col = species_colors, lwd = 2)
+```
+:::
+
+### Statistical Analysis (15 minutes)
+
+Let's perform various statistical tests and create models.
+
+#### Custom Descriptive Statistics
+
+```{r}
+#| echo: true
+#| eval: false
+# Descriptive statistics
+# Custom summary function
+describe_variable <- function(x) {
+  c(mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE))
+}
+
+describe_variable(iris$Sepal.Length)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Descriptive statistics
+# Custom summary function
+describe_variable <- function(x) {
+  c(mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE))
+}
+
+describe_variable(iris$Sepal.Length)
+```
+:::
+
+#### Correlation Analysis
+
+```{r}
+#| echo: true
+#| eval: false
+# Correlation analysis
+# Correlation matrix
+cor_matrix <- cor(iris[, 1:4])
+print(round(cor_matrix, 2))
+
+# Correlation test
+cor.test(iris$Sepal.Length, iris$Sepal.Width)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Correlation analysis
+# Correlation matrix
+cor_matrix <- cor(iris[, 1:4])
+print(round(cor_matrix, 2))
+
+# Correlation test
+cor.test(iris$Sepal.Length, iris$Sepal.Width)
+```
+:::
+
+#### Hypothesis Testing
+
+```{r}
+#| echo: true
+#| eval: false
+# Hypothesis testing
+# t-test: comparing two groups
+setosa_sepal <- iris[iris$Species == "setosa", "Sepal.Length"]
+versicolor_sepal <- iris[iris$Species == "versicolor", "Sepal.Length"]
+
+t_test_result <- t.test(setosa_sepal, versicolor_sepal)
+print(t_test_result)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Hypothesis testing
+# t-test: comparing two groups
+setosa_sepal <- iris[iris$Species == "setosa", "Sepal.Length"]
+versicolor_sepal <- iris[iris$Species == "versicolor", "Sepal.Length"]
+
+t_test_result <- t.test(setosa_sepal, versicolor_sepal)
+print(t_test_result)
+```
+:::
+
+#### ANOVA and Post-hoc Tests
+
+```{r}
+#| echo: true
+#| eval: false
+# ANOVA: comparing multiple groups
+anova_result <- aov(Sepal.Length ~ Species, data = iris)
+summary(anova_result)
+
+# Post-hoc test
+TukeyHSD(anova_result)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# ANOVA: comparing multiple groups
+anova_result <- aov(Sepal.Length ~ Species, data = iris)
+summary(anova_result)
+
+# Post-hoc test
+TukeyHSD(anova_result)
+```
+:::
+
+#### Linear Regression
+
+```{r}
+#| echo: true
+#| eval: false
+# Linear regression
+# Simple linear regression
+model1 <- lm(mpg ~ wt, data = mtcars)
+summary(model1)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Linear regression
+# Simple linear regression
+model1 <- lm(mpg ~ wt, data = mtcars)
+summary(model1)
+```
+:::
+
+#### Multiple Linear Regression and Model Comparison
+
+```{r}
+#| echo: true
+#| eval: false
+# Multiple linear regression
+model2 <- lm(mpg ~ wt + hp + cyl, data = mtcars)
+summary(model2)
+
+# Model comparison
+anova(model1, model2)
+
+# Predictions
+new_car <- data.frame(wt = 3.0, hp = 150, cyl = 6)
+predicted_mpg <- predict(model2, new_car)
+print(paste("Predicted MPG:", round(predicted_mpg, 2)))
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Multiple linear regression
+model2 <- lm(mpg ~ wt + hp + cyl, data = mtcars)
+summary(model2)
+
+# Model comparison
+anova(model1, model2)
+
+# Predictions
+new_car <- data.frame(wt = 3.0, hp = 150, cyl = 6)
+predicted_mpg <- predict(model2, new_car)
+print(paste("Predicted MPG:", round(predicted_mpg, 2)))
+```
+:::
+
+### Programming in R: Functions and Control Structures (10 minutes)
+
+Learning to write functions and use control structures makes R much more powerful.
+
+#### Writing Custom Functions
+
+```{r}
+#| echo: true
+#| eval: false
+# Writing custom functions
+grade_to_letter <- function(numeric_grade) {
+  if (numeric_grade >= 90) {
+    return("A")
+  } else if (numeric_grade >= 80) {
+    return("B")
+  } else if (numeric_grade >= 70) {
+    return("C")
+  } else if (numeric_grade >= 60) {
+    return("D")
+  } else {
+    return("F")
+  }
+}
+
+# Test the function
+grade_to_letter(85)
+grade_to_letter(92)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Writing custom functions
+grade_to_letter <- function(numeric_grade) {
+  if (numeric_grade >= 90) {
+    return("A")
+  } else if (numeric_grade >= 80) {
+    return("B")
+  } else if (numeric_grade >= 70) {
+    return("C")
+  } else if (numeric_grade >= 60) {
+    return("D")
+  } else {
+    return("F")
+  }
+}
+
+# Test the function
+grade_to_letter(85)
+grade_to_letter(92)
+```
+:::
+
+#### Vectorized Functions
+
+```{r}
+#| echo: true
+#| eval: false
+# Vectorized version
+grade_to_letter_vec <- function(grades) {
+  ifelse(grades >= 90, "A",
+         ifelse(grades >= 80, "B",
+                ifelse(grades >= 70, "C",
+                       ifelse(grades >= 60, "D", "F"))))
+}
+
+test_grades <- c(95, 87, 78, 65, 45)
+grade_to_letter_vec(test_grades)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Vectorized version
+grade_to_letter_vec <- function(grades) {
+  ifelse(grades >= 90, "A",
+         ifelse(grades >= 80, "B",
+                ifelse(grades >= 70, "C",
+                       ifelse(grades >= 60, "D", "F"))))
+}
+
+test_grades <- c(95, 87, 78, 65, 45)
+grade_to_letter_vec(test_grades)
+```
+:::
+
+#### Loops and Control Structures
+
+```{r}
+#| echo: true
+#| eval: false
+# For loop
+fibonacci <- function(n) {
+  if (n <= 1) return(n)
+  
+  fib_seq <- numeric(n)
+  fib_seq[1] <- 0
+  fib_seq[2] <- 1
+  
+  for (i in 3:n) {
+    fib_seq[i] <- fib_seq[i-1] + fib_seq[i-2]
+  }
+  
+  return(fib_seq)
+}
+
+fibonacci(10)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# For loop
+fibonacci <- function(n) {
+  if (n <= 1) return(n)
+  
+  fib_seq <- numeric(n)
+  fib_seq[1] <- 0
+  fib_seq[2] <- 1
+  
+  for (i in 3:n) {
+    fib_seq[i] <- fib_seq[i-1] + fib_seq[i-2]
+  }
+  
+  return(fib_seq)
+}
+
+fibonacci(10)
+```
+:::
+
+#### While Loops
+
+```{r}
+#| echo: true
+#| eval: false
+# While loop example
+count_down <- function(start) {
+  current <- start
+  result <- c()
+  
+  while (current > 0) {
+    result <- c(result, current)
+    current <- current - 1
+  }
+  
+  return(result)
+}
+
+count_down(5)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# While loop example
+count_down <- function(start) {
+  current <- start
+  result <- c()
+  
+  while (current > 0) {
+    result <- c(result, current)
+    current <- current - 1
+  }
+  
+  return(result)
+}
+
+count_down(5)
+```
+:::
+
+#### Apply Family Functions
+
+```{r}
+#| echo: true
+#| eval: false
+# Apply family functions (more efficient than loops)
+# lapply: apply function to list elements
+numbers <- list(a = 1:5, b = 6:10, c = 11:15)
+lapply(numbers, mean)
+
+# sapply: simplified apply
+sapply(numbers, mean)
+
+# mapply: multivariate apply
+mapply(function(x, y) x + y, 1:3, 4:6)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Apply family functions (more efficient than loops)
+# lapply: apply function to list elements
+numbers <- list(a = 1:5, b = 6:10, c = 11:15)
+lapply(numbers, mean)
+
+# sapply: simplified apply
+sapply(numbers, mean)
+
+# mapply: multivariate apply
+mapply(function(x, y) x + y, 1:3, 4:6)
+```
+:::
+
+**🔍 Exercise 2a:** Create a function that calculates the coefficient of variation (CV = sd/mean) for a numeric vector. Test it on the Sepal.Length column of the iris dataset for each species.
+
+::: {.callout-note collapse="true"}
+## Click to see Exercise 2a Answer
+
+```{r}
+#| echo: true
+#| eval: true
+# Create coefficient of variation function
+coeff_variation <- function(x) {
+  cv <- sd(x, na.rm = TRUE) / mean(x, na.rm = TRUE)
+  return(cv)
+}
+
+# Test on Sepal.Length for each species
+species_list <- levels(iris$Species)
+cv_results <- sapply(species_list, function(species) {
+  species_data <- iris[iris$Species == species, "Sepal.Length"]
+  coeff_variation(species_data)
+})
+
+print("Coefficient of Variation for Sepal.Length by Species:")
+print(round(cv_results, 4))
+
+# Alternative approach using aggregate
+cv_by_species <- aggregate(Sepal.Length ~ Species, data = iris, 
+                          FUN = function(x) sd(x)/mean(x))
+print("Using aggregate function:")
+print(cv_by_species)
+```
+
+The coefficient of variation measures relative variability. Lower values indicate less variability relative to the mean. Setosa has the lowest CV, indicating more consistent sepal lengths within that species.
+:::
+
+**🔍 Exercise 2b:** Using the mtcars dataset, create a comprehensive analysis that includes:
+
+- A summary of the data
+- A correlation matrix of all numeric variables
+- A linear model predicting mpg from weight and horsepower
+- A visualization showing the relationship between weight and mpg with different colors for number of cylinders
+
+::: {.callout-note collapse="true"}
+## Click to see Exercise 2b Answer
+
+```{r}
+#| echo: true
+#| eval: true
+# Comprehensive mtcars analysis
+
+# 1. Summary of the data
+print("=== MTCARS DATASET SUMMARY ===")
+print(summary(mtcars))
+print(paste("Dataset dimensions:", nrow(mtcars), "rows,", ncol(mtcars), "columns"))
+
+# 2. Correlation matrix of all numeric variables
+print("\n=== CORRELATION MATRIX ===")
+cor_matrix <- cor(mtcars)
+print(round(cor_matrix, 2))
+
+# 3. Linear model predicting mpg from weight and horsepower
+print("\n=== LINEAR REGRESSION MODEL ===")
+mpg_model <- lm(mpg ~ wt + hp, data = mtcars)
+print(summary(mpg_model))
+
+# Model interpretation
+r_squared <- summary(mpg_model)$r.squared
+print(paste("R-squared:", round(r_squared, 3)))
+print(paste("The model explains", round(r_squared * 100, 1), "% of the variance in MPG"))
+
+# 4. Visualization: Weight vs MPG colored by cylinders
+print("\n=== VISUALIZATION ===")
+# Create color vector for cylinders
+cyl_colors <- c("red", "blue", "green")[as.factor(mtcars$cyl)]
+
+plot(mtcars$wt, mtcars$mpg,
+     main = "MPG vs Weight by Number of Cylinders",
+     xlab = "Weight (1000 lbs)",
+     ylab = "Miles Per Gallon",
+     col = cyl_colors,
+     pch = 19,
+     cex = 1.2)
+
+# Add legend
+legend("topright", 
+       legend = paste(sort(unique(mtcars$cyl)), "cylinders"),
+       col = c("red", "blue", "green"),
+       pch = 19,
+       title = "Engine")
+
+# Add regression line
+abline(lm(mpg ~ wt, data = mtcars), col = "black", lwd = 2, lty = 2)
+
+# Add text annotation
+text(4.5, 30, paste("R² =", round(summary(lm(mpg ~ wt, data = mtcars))$r.squared, 3)),
+     cex = 0.9, col = "black")
+```
+
+**Key Findings:**
+- **Correlation**: Weight (wt) and horsepower (hp) are strongly negatively correlated with MPG
+- **Model**: The regression model explains about 83% of MPG variance using weight and horsepower
+- **Visualization**: Cars with fewer cylinders tend to be lighter and more fuel-efficient
+- **Relationship**: Clear negative relationship between weight and MPG across all cylinder groups
+:::
+
+---

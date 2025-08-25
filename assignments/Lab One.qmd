@@ -1,0 +1,832 @@
+---
+title: "Lab One: Part Two"
+editor: visual
+---
+
+---
+# Introduction to R Lab
+
+## Learning Objectives
+
+By the end of this lab, you will be able to:
+
+- Navigate the R environment and understand basic syntax
+- Work with different data types and structures in R
+- Import, explore, and manipulate datasets
+- Create basic and intermediate visualizations
+- Perform statistical analyses and interpret results
+- Write custom functions and use control structures
+---
+
+## Part 1: R Fundamentals and Data Structures (60 minutes)
+
+### Getting Started with R (10 minutes)
+
+R is both a programming language and an environment for statistical computing. Let's start with the basics.
+
+#### Basic Arithmetic Operations
+
+```{r}
+#| echo: true
+#| eval: false
+# R as a calculator
+2 + 3
+10 - 4
+6 * 7
+20 / 4
+2^3  # exponentiation
+sqrt(16)  # square root
+log(10)   # natural logarithm
+exp(1)    # e^1
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# R as a calculator
+2 + 3
+10 - 4
+6 * 7
+20 / 4
+2^3  # exponentiation
+sqrt(16)  # square root
+log(10)   # natural logarithm
+exp(1)    # e^1
+```
+:::
+
+#### Order of Operations
+
+```{r}
+#| echo: true
+#| eval: false
+# Order of operations
+2 + 3 * 4
+(2 + 3) * 4
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Order of operations
+2 + 3 * 4
+(2 + 3) * 4
+```
+:::
+
+#### Mathematical Functions
+
+```{r}
+#| echo: true
+#| eval: false
+# Mathematical functions
+abs(-5)
+round(3.14159, 2)
+ceiling(3.2)
+floor(3.8)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Mathematical functions
+abs(-5)
+round(3.14159, 2)
+ceiling(3.2)
+floor(3.8)
+```
+:::
+
+### Variables and Assignment (10 minutes)
+
+Understanding how to store and manipulate data is crucial in R.
+
+#### Creating and Using Variables
+
+```{r}
+#| echo: true
+#| eval: false
+# Creating variables
+x <- 10
+y <- 5
+name <- "Alice"
+university <- "State University"
+
+# Using variables
+result <- x + y
+message <- paste("Hello", name, "from", university)
+print(result)
+print(message)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Creating variables
+x <- 10
+y <- 5
+name <- "Alice"
+university <- "State University"
+
+# Using variables
+result <- x + y
+message <- paste("Hello", name, "from", university)
+print(result)
+print(message)
+```
+:::
+
+#### Multiple Assignment and Naming Conventions
+
+```{r}
+#| echo: true
+#| eval: false
+# Multiple assignment
+a <- b <- c <- 100
+print(c(a, b, c))
+
+# Variable naming conventions
+student_name <- "John Doe"  # snake_case (recommended)
+studentName <- "Jane Smith"  # camelCase
+student.name <- "Bob Johnson"  # dot notation (less common)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Multiple assignment
+a <- b <- c <- 100
+print(c(a, b, c))
+
+# Variable naming conventions
+student_name <- "John Doe"  # snake_case (recommended)
+studentName <- "Jane Smith"  # camelCase
+student.name <- "Bob Johnson"  # dot notation (less common)
+```
+:::
+
+#### Environment Management
+
+```{r}
+#| echo: true
+#| eval: false
+# Check what's in your environment
+ls()  # List all variables
+rm(x, y)  # Remove specific variables
+ls()  # Check again
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Check what's in your environment
+ls()  # List all variables
+rm(x, y)  # Remove specific variables
+ls()  # Check again
+```
+:::
+
+### Data Types and Structures (15 minutes)
+
+R has several data types. Understanding them is fundamental to effective programming.
+
+#### Basic Data Types
+
+```{r}
+#| echo: true
+#| eval: false
+# Basic data types
+age <- 25L          # Integer (note the L)
+height <- 5.8       # Numeric (double)
+student_name <- "John Doe"  # Character
+is_enrolled <- TRUE # Logical
+grade <- 'A'        # Character (single quotes also work)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Basic data types
+age <- 25L          # Integer (note the L)
+height <- 5.8       # Numeric (double)
+student_name <- "John Doe"  # Character
+is_enrolled <- TRUE # Logical
+grade <- 'A'        # Character (single quotes also work)
+```
+:::
+
+#### Checking Data Types
+
+```{r}
+#| echo: true
+#| eval: false
+# Check data types
+typeof(age)
+typeof(height)
+typeof(student_name)
+typeof(is_enrolled)
+
+# Also use class() function
+class(age)
+class(height)
+class(student_name)
+class(is_enrolled)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Check data types
+typeof(age)
+typeof(height)
+typeof(student_name)
+typeof(is_enrolled)
+
+# Also use class() function
+class(age)
+class(height)
+class(student_name)
+class(is_enrolled)
+```
+:::
+
+#### Type Conversion
+
+```{r}
+#| echo: true
+#| eval: false
+# Type conversion
+as.numeric("123")
+as.character(456)
+as.logical(1)  # 1 becomes TRUE, 0 becomes FALSE
+as.integer(3.14)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Type conversion
+as.numeric("123")
+as.character(456)
+as.logical(1)  # 1 becomes TRUE, 0 becomes FALSE
+as.integer(3.14)
+```
+:::
+
+#### Special Values
+
+```{r}
+#| echo: true
+#| eval: false
+# Special values
+missing_value <- NA  # Not Available
+infinite_value <- Inf
+not_a_number <- NaN
+
+# Check for special values
+is.na(missing_value)
+is.infinite(infinite_value)
+is.nan(not_a_number)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Special values
+missing_value <- NA  # Not Available
+infinite_value <- Inf
+not_a_number <- NaN
+
+# Check for special values
+is.na(missing_value)
+is.infinite(infinite_value)
+is.nan(not_a_number)
+```
+:::
+
+### Vectors: The Building Blocks (15 minutes)
+
+Vectors are the most basic data structure in R. Everything in R is built from vectors.
+
+#### Creating Vectors
+
+```{r}
+#| echo: true
+#| eval: false
+# Creating vectors
+grades <- c(85, 92, 78, 96, 88)
+student_names <- c("Alice", "Bob", "Charlie", "Diana", "Eve")
+passed <- c(TRUE, TRUE, FALSE, TRUE, TRUE)
+
+# Vector properties
+length(grades)
+names(grades) <- student_names  # Adding names to vector elements
+print(grades)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Creating vectors
+grades <- c(85, 92, 78, 96, 88)
+student_names <- c("Alice", "Bob", "Charlie", "Diana", "Eve")
+passed <- c(TRUE, TRUE, FALSE, TRUE, TRUE)
+
+# Vector properties
+length(grades)
+names(grades) <- student_names  # Adding names to vector elements
+print(grades)
+```
+:::
+
+#### Accessing Vector Elements
+
+```{r}
+#| echo: true
+#| eval: false
+# Accessing vector elements (1-indexed!)
+grades[1]              # First element
+grades[2:4]            # Elements 2 through 4
+grades[c(1, 3, 5)]     # Specific elements
+grades["Alice"]        # Using names
+grades[grades > 90]    # Conditional indexing
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Accessing vector elements (1-indexed!)
+grades[1]              # First element
+grades[2:4]            # Elements 2 through 4
+grades[c(1, 3, 5)]     # Specific elements
+grades["Alice"]        # Using names
+grades[grades > 90]    # Conditional indexing
+```
+:::
+
+#### Vector Operations
+
+```{r}
+#| echo: true
+#| eval: false
+# Vector operations (vectorized!)
+grades + 5             # Add 5 to all grades
+grades * 1.1           # Multiply all by 1.1
+grades > 85            # Logical comparison
+which(grades > 85)     # Which positions are TRUE
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Vector operations (vectorized!)
+grades + 5             # Add 5 to all grades
+grades * 1.1           # Multiply all by 1.1
+grades > 85            # Logical comparison
+which(grades > 85)     # Which positions are TRUE
+```
+:::
+
+#### Vector Functions
+
+```{r}
+#| echo: true
+#| eval: false
+# Useful vector functions
+sum(grades)
+mean(grades)
+median(grades)
+max(grades)
+min(grades)
+range(grades)
+sort(grades)
+sort(grades, decreasing = TRUE)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Useful vector functions
+sum(grades)
+mean(grades)
+median(grades)
+max(grades)
+min(grades)
+range(grades)
+sort(grades)
+sort(grades, decreasing = TRUE)
+```
+:::
+
+#### Creating Sequences
+
+```{r}
+#| echo: true
+#| eval: false
+# Creating sequences
+seq(1, 10, by = 2)     # 1, 3, 5, 7, 9
+seq(0, 1, length.out = 5)  # 5 equally spaced numbers
+1:10                   # Shorthand for seq(1, 10, by = 1)
+rep(c("A", "B"), times = 3)  # Repeat vector
+rep(c("A", "B"), each = 3)   # Repeat each element
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Creating sequences
+seq(1, 10, by = 2)     # 1, 3, 5, 7, 9
+seq(0, 1, length.out = 5)  # 5 equally spaced numbers
+1:10                   # Shorthand for seq(1, 10, by = 1)
+rep(c("A", "B"), times = 3)  # Repeat vector
+rep(c("A", "B"), each = 3)   # Repeat each element
+```
+:::
+
+### Working with Data Frames (20 minutes)
+
+Data frames are the primary way to work with structured data in R.
+
+#### Creating a Data Frame
+
+```{r}
+#| echo: true
+#| eval: false
+# Creating a data frame
+students <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana", "Eve"),
+  age = c(20, 21, 19, 22, 20),
+  grade = c(85, 92, 78, 96, 88),
+  major = c("Biology", "Physics", "Chemistry", "Biology", "Math"),
+  gpa = c(3.4, 3.7, 3.1, 3.8, 3.5),
+  stringsAsFactors = FALSE  # Keep character columns as characters
+)
+
+print(students)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Creating a data frame
+students <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana", "Eve"),
+  age = c(20, 21, 19, 22, 20),
+  grade = c(85, 92, 78, 96, 88),
+  major = c("Biology", "Physics", "Chemistry", "Biology", "Math"),
+  gpa = c(3.4, 3.7, 3.1, 3.8, 3.5),
+  stringsAsFactors = FALSE  # Keep character columns as characters
+)
+
+print(students)
+```
+:::
+
+#### Viewing Data Frame Structure
+
+```{r}
+#| echo: true
+#| eval: false
+# Viewing the data frame
+head(students, 3)      # First 3 rows
+tail(students, 2)      # Last 2 rows
+str(students)          # Structure of the data frame
+summary(students)      # Summary statistics
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Viewing the data frame
+head(students, 3)      # First 3 rows
+tail(students, 2)      # Last 2 rows
+str(students)          # Structure of the data frame
+summary(students)      # Summary statistics
+```
+:::
+
+#### Data Frame Properties
+
+```{r}
+#| echo: true
+#| eval: false
+# Data frame dimensions and properties
+dim(students)          # Dimensions (rows, columns)
+nrow(students)         # Number of rows
+ncol(students)         # Number of columns
+names(students)        # Column names
+rownames(students)     # Row names
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Data frame dimensions and properties
+dim(students)          # Dimensions (rows, columns)
+nrow(students)         # Number of rows
+ncol(students)         # Number of columns
+names(students)        # Column names
+rownames(students)     # Row names
+```
+:::
+
+#### Accessing Columns
+
+```{r}
+#| echo: true
+#| eval: false
+# Accessing data frame elements
+students$name              # Using $
+students[, "grade"]        # Using column name
+students[, 3]             # Using column index
+students["grade"]         # Returns data frame
+students[["grade"]]       # Returns vector
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Accessing data frame elements
+students$name              # Using $
+students[, "grade"]        # Using column name
+students[, 3]             # Using column index
+students["grade"]         # Returns data frame
+students[["grade"]]       # Returns vector
+```
+:::
+
+#### Accessing Multiple Columns and Rows
+
+```{r}
+#| echo: true
+#| eval: false
+# Multiple columns
+students[, c("name", "grade")]
+students[, c(1, 3)]
+
+# Accessing rows
+students[1, ]             # First row
+students[2:3, ]           # Rows 2 and 3
+students[c(1, 3, 5), ]    # Specific rows
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Multiple columns
+students[, c("name", "grade")]
+students[, c(1, 3)]
+
+# Accessing rows
+students[1, ]             # First row
+students[2:3, ]           # Rows 2 and 3
+students[c(1, 3, 5), ]    # Specific rows
+```
+:::
+
+#### Accessing Specific Cells and Filtering
+
+```{r}
+#| echo: true
+#| eval: false
+# Accessing specific cells
+students[1, "name"]       # First row, name column
+students[2, 3]            # Second row, third column
+
+# Conditional filtering
+high_performers <- students[students$grade > 90, ]
+biology_students <- students[students$major == "Biology", ]
+young_high_performers <- students[students$age < 21 & students$grade > 85, ]
+
+print("High performers:")
+print(high_performers)
+print("Biology students:")
+print(biology_students)
+print("Young high performers:")
+print(young_high_performers)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Accessing specific cells
+students[1, "name"]       # First row, name column
+students[2, 3]            # Second row, third column
+
+# Conditional filtering
+high_performers <- students[students$grade > 90, ]
+biology_students <- students[students$major == "Biology", ]
+young_high_performers <- students[students$age < 21 & students$grade > 85, ]
+
+print("High performers:")
+print(high_performers)
+print("Biology students:")
+print(biology_students)
+print("Young high performers:")
+print(young_high_performers)
+```
+:::
+
+#### Adding and Modifying Columns
+
+```{r}
+#| echo: true
+#| eval: false
+# Adding and modifying columns
+students$letter_grade <- ifelse(students$grade >= 90, "A",
+                               ifelse(students$grade >= 80, "B",
+                               ifelse(students$grade >= 70, "C", "D")))
+
+students$status <- ifelse(students$grade >= 80, "Pass", "Fail")
+students$age_group <- cut(students$age, 
+                         breaks = c(0, 20, 22, Inf),
+                         labels = c("Young", "Medium", "Older"))
+
+print(students)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Adding and modifying columns
+students$letter_grade <- ifelse(students$grade >= 90, "A",
+                               ifelse(students$grade >= 80, "B",
+                               ifelse(students$grade >= 70, "C", "D")))
+
+students$status <- ifelse(students$grade >= 80, "Pass", "Fail")
+students$age_group <- cut(students$age, 
+                         breaks = c(0, 20, 22, Inf),
+                         labels = c("Young", "Medium", "Older"))
+
+print(students)
+```
+:::
+
+#### Removing and Reordering Columns
+
+```{r}
+#| echo: true
+#| eval: false
+# Removing columns
+students$age_group <- NULL  # Remove column
+
+# Reordering columns
+students <- students[, c("name", "age", "major", "grade", "gpa", "letter_grade", "status")]
+
+print(students)
+```
+
+::: {.callout-tip collapse="true"}
+## Show Output
+
+```{r}
+#| echo: false
+#| eval: true
+# Removing columns
+students$age_group <- NULL  # Remove column
+
+# Reordering columns
+students <- students[, c("name", "age", "major", "grade", "gpa", "letter_grade", "status")]
+
+print(students)
+```
+:::
+
+------------------------------------------------------------------------
+
+## Practice Exercises
+
+**🔍 Exercise 1a:** Create a vector of temperatures in Fahrenheit: 32, 68, 86, 104, 122. Convert them to Celsius using the formula: C = (F - 32) \* 5/9. Find the average temperature in Celsius.
+
+::: {.callout-note collapse="true"}
+## Click to see Exercise 1a Answer
+
+```{r}
+#| echo: true
+#| eval: true
+# Create vector of Fahrenheit temperatures
+fahrenheit <- c(32, 68, 86, 104, 122)
+
+# Convert to Celsius
+celsius <- (fahrenheit - 32) * 5/9
+
+# Display the conversion
+print("Fahrenheit temperatures:")
+print(fahrenheit)
+print("Celsius temperatures:")
+print(celsius)
+
+# Find average temperature in Celsius
+avg_celsius <- mean(celsius)
+print(paste("Average temperature in Celsius:", round(avg_celsius, 2)))
+```
+
+The temperatures in Celsius are: 0°C, 20°C, 30°C, 40°C, 50°C The average temperature in Celsius is 28°C.
+:::
+
+**🔍 Exercise 1b:** Create a data frame with information about 5 books including title, author, year published, and number of pages. Filter for books published after 2000 and calculate the average number of pages.
+
+::: {.callout-note collapse="true"}
+## Click to see Exercise 1b Answer
+
+```{r}
+#| echo: true
+#| eval: true
+# Create data frame with book information
+books <- data.frame(
+  title = c("The Hunger Games", "1984", "To Kill a Mockingbird", 
+            "The Fault in Our Stars", "Pride and Prejudice"),
+  author = c("Suzanne Collins", "George Orwell", "Harper Lee", 
+             "John Green", "Jane Austen"),
+  year_published = c(2008, 1949, 1960, 2012, 1813),
+  pages = c(374, 328, 281, 313, 432),
+  stringsAsFactors = FALSE
+)
+
+# Display the original data frame
+print("All books:")
+print(books)
+
+# Filter for books published after 2000
+recent_books <- books[books$year_published > 2000, ]
+print("Books published after 2000:")
+print(recent_books)
+
+# Calculate average number of pages for recent books
+avg_pages_recent <- mean(recent_books$pages)
+print(paste("Average number of pages for books published after 2000:", 
+            round(avg_pages_recent, 1)))
+```
+
+The books published after 2000 are: - The Hunger Games (2008) - 374 pages - The Fault in Our Stars (2012) - 313 pages
+
+The average number of pages for books published after 2000 is 343.5 pages.
+:::
+
+------------------------------------------------------------------------
