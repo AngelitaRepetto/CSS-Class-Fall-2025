@@ -18,14 +18,6 @@ Subject to change - check here for most up to date class schedule.
 
 - Introduction to Computational Social Science
 
-*Readings:*
-
-- Cioffi-Revilla, Claudio. 2010. “Computational Social Science.” Wiley Interdisciplinary Reviews:            Computational Statistics 2(3):259–71. 
-
-- Edelmann, A., Wolff, T., Montagne, D., & Bail, C. A. (2020). Computational social science and            sociology. Annual Review of Sociology, 46, 61-81.
-
-- Evans, James and Jacob G. Foster. 2019. “Computation and the Sociological Imagination.” Contexts          18(4):10–15. 
-
 **Thursday - 8/28/25**
 
 *Topics:*
@@ -34,7 +26,13 @@ Subject to change - check here for most up to date class schedule.
 
 *Readings:*
 
-- https://www.asanet.org/wp-content/uploads/savvy/introtosociology/Documents/Field%20of%20sociology033108.htm
+- https://www.asanet.org/wp-content/uploads/savvy/introtosociology/Documents/Field%20of%20sociology       033108.htm
+
+- Cioffi-Revilla, Claudio. 2010. “Computational Social Science.” Wiley Interdisciplinary Reviews:            Computational Statistics 2(3):259–71. 
+
+- Edelmann, A., Wolff, T., Montagne, D., & Bail, C. A. (2020). Computational social science and            sociology. Annual Review of Sociology, 46, 61-81.
+
+- Evans, James and Jacob G. Foster. 2019. “Computation and the Sociological Imagination.” Contexts          18(4):10–15. 
 
 ---
 

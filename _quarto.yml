@@ -22,31 +22,10 @@ website:
             href: assignments/Lab One.qmd
           - text: "Lab Two - Part Two"
             href: assignments/Lab One Part Two.qmd
-          #- text: "Lab Three"
-          #  href: assignments/projects.qmd
-          #- text: "Lab Four"
-          #  href: assignments/projects.qmd
-         # - text: "Lab Five"
-         #   href: assignments/projects.qmd
-         # - text: "Lab Six"
-         #   href: assignments/projects.qmd
-         # - text: "Lab Seven"
-         #   href: assignments/projects.qmd
-        #  - text: "Lab Eight"
-        #    href: assignments/projects.qmd
-      - text: "Final Project"
-        menu:
-          - text: "Project Proposal"
-        #    href: resources/software.qmd
-          - text: "Project Presentation"
-          #  href: resources/tutorials.qmd
-          - text: "Final Paper"
-          #  href: resources/data.qmd
+
     right:
-      - icon: github
-        href: https://github.com/[YOUR-USERNAME]/css-fall2025
       - icon: envelope
-        href: mailto:[YOUR-EMAIL]
+        href: mailto:[arepetto@msu.edu]
 
   sidebar:
     style: "floating"
