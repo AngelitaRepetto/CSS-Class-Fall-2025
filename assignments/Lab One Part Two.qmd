@@ -860,10 +860,10 @@ The coefficient of variation measures relative variability. Lower values indicat
 
 **🔍 Exercise 2b:** Using the mtcars dataset, create a comprehensive analysis that includes:
 
-- A summary of the data
-- A correlation matrix of all numeric variables
-- A linear model predicting mpg from weight and horsepower
-- A visualization showing the relationship between weight and mpg with different colors for number of cylinders
+-   A summary of the data
+-   A correlation matrix of all numeric variables
+-   A linear model predicting mpg from weight and horsepower
+-   A visualization showing the relationship between weight and mpg with different colors for number of cylinders
 
 ::: {.callout-note collapse="true"}
 ## Click to see Exercise 2b Answer
@@ -921,11 +921,7 @@ text(4.5, 30, paste("R² =", round(summary(lm(mpg ~ wt, data = mtcars))$r.square
      cex = 0.9, col = "black")
 ```
 
-**Key Findings:**
-- **Correlation**: Weight (wt) and horsepower (hp) are strongly negatively correlated with MPG
-- **Model**: The regression model explains about 83% of MPG variance using weight and horsepower
-- **Visualization**: Cars with fewer cylinders tend to be lighter and more fuel-efficient
-- **Relationship**: Clear negative relationship between weight and MPG across all cylinder groups
+**Key Findings:** - **Correlation**: Weight (wt) and horsepower (hp) are strongly negatively correlated with MPG - **Model**: The regression model explains about 83% of MPG variance using weight and horsepower - **Visualization**: Cars with fewer cylinders tend to be lighter and more fuel-efficient - **Relationship**: Clear negative relationship between weight and MPG across all cylinder groups
 :::
 
----
+------------------------------------------------------------------------

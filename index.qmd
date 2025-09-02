@@ -54,6 +54,6 @@ The course culminates in a comprehensive final project where students apply mult
 
 1. Review the [syllabus](syllabus.qmd)
 2. Check the [schedule](schedule.qmd) for upcoming assignments
-3. Set up your [software environment](resources/software.qmd)
+3. Set up your [software environment](https://rstudio-education.github.io/hopr/starting.html)
 
 

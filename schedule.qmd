@@ -32,8 +32,6 @@ Subject to change - check here for most up to date class schedule.
 
 - Edelmann, A., Wolff, T., Montagne, D., & Bail, C. A. (2020). Computational social science and            sociology. Annual Review of Sociology, 46, 61-81.
 
-- Evans, James and Jacob G. Foster. 2019. “Computation and the Sociological Imagination.” Contexts          18(4):10–15. 
-
 ---
 
 ### Week 2: Introduction to R

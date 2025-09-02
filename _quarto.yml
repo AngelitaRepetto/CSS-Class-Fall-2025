@@ -21,7 +21,7 @@ website:
           - text: "Lab One - Part One"
             href: assignments/Lab One.qmd
           - text: "Lab Two - Part Two"
-            href: assignments/Lab One Part Two.qmd
+            href: assignments/Lab One Part Two - Edited.qmd
 
     right:
       - icon: envelope

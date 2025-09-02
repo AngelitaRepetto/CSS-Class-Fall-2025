@@ -1,0 +1,746 @@
+---
+title: "Lab One: Part Two"
+editor: visual
+---
+
+Part 2: Data Analysis, Visualization, and Programming (70 minutes)
+
+## Package Installation and Library Management (10 minutes)
+
+Before diving into advanced data analysis, let's learn how to install and use R packages. Packages extend R's functionality significantly.
+
+### Installing Packages
+
+```         
+#| echo: true
+#| eval: false
+# Install individual packages
+install.packages("tidyverse")  # A collection of data science packages
+install.packages("dplyr")      # Data manipulation
+install.packages("ggplot2")    # Advanced plotting
+install.packages("readr")      # Reading data files
+install.packages("tidyr")      # Data reshaping
+
+# Install multiple packages at once
+packages_to_install <- c("lubridate", "stringr", "forcats", "purrr")
+install.packages(packages_to_install)
+
+# Install from CRAN (most common)
+install.packages("plotly")     # Interactive plots
+install.packages("corrplot")   # Correlation plots
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# We'll simulate the installation process
+cat("Installing packages...\n")
+cat("Package 'tidyverse' successfully installed\n")
+cat("Package 'dplyr' successfully installed\n")
+cat("Package 'ggplot2' successfully installed\n")
+```
+
+### Loading Libraries
+
+```         
+#| echo: true
+#| eval: false
+# Load libraries for this session
+library(tidyverse)  # Loads dplyr, ggplot2, readr, tibble, stringr, forcats
+library(dplyr)      # Data manipulation
+library(ggplot2)    # Grammar of graphics plotting
+
+# Alternative method
+require(tidyverse)  # Similar to library() but returns TRUE/FALSE
+
+# Check if package is installed before loading
+if (!require(tidyverse)) {
+  install.packages("tidyverse")
+  library(tidyverse)
+}
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Simulate loading packages
+cat("── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n")
+cat("✔ ggplot2 3.4.0     ✔ purrr   1.0.1\n")
+cat("✔ tibble  3.1.8     ✔ dplyr   1.1.0\n")
+cat("✔ tidyr   1.3.0     ✔ stringr 1.5.0\n")
+cat("✔ readr   2.1.3     ✔ forcats 0.5.2\n")
+```
+
+### Package Management Best Practices
+
+```         
+#| echo: true
+#| eval: false
+# Check installed packages
+installed.packages()[1:5, c("Package", "Version")]
+
+# Update packages
+update.packages()
+
+# Check which packages are loaded
+search()
+
+# Get help for a package
+help(package = "dplyr")
+
+# See package version
+packageVersion("dplyr")
+
+# Detach a package if needed
+detach("package:dplyr", unload = TRUE)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Show some package information
+cat("Loaded packages:\n")
+cat("[1] \".GlobalEnv\"     \"package:dplyr\"    \"package:ggplot2\"  \n")
+cat("[4] \"package:stats\"   \"package:graphics\" \"package:utils\"    \n")
+cat("\nPackage version example:\n")
+cat("dplyr: 1.1.0\n")
+```
+
+## Advanced Data Exploration with tidyverse (15 minutes)
+
+Now let's explore data using modern R techniques with tidyverse packages.
+
+### Loading and Exploring Datasets with dplyr
+
+```         
+#| echo: true
+#| eval: false
+# Load datasets (assuming tidyverse is loaded)
+data(iris)
+data(mtcars)
+
+# Convert to tibbles (modern data frames)
+iris_tbl <- as_tibble(iris)
+mtcars_tbl <- as_tibble(mtcars, rownames = "car_name")
+
+# Explore with tidyverse functions
+glimpse(iris_tbl)
+glimpse(mtcars_tbl)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Load datasets
+data(iris)
+data(mtcars)
+
+# Explore iris dataset
+head(iris)
+str(iris)
+summary(iris)
+```
+
+### Modern Data Manipulation with dplyr
+
+```         
+#| echo: true
+#| eval: false
+# dplyr verbs for data manipulation
+# select() - choose columns
+iris_tbl %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  head()
+
+# filter() - choose rows
+iris_tbl %>%
+  filter(Species == "setosa", Sepal.Length > 5) %>%
+  head()
+
+# mutate() - create new columns
+iris_tbl %>%
+  mutate(
+    Sepal.Ratio = Sepal.Length / Sepal.Width,
+    Size.Category = if_else(Sepal.Length > median(Sepal.Length), 
+                           "Large", "Small")
+  ) %>%
+  head()
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Simulate dplyr operations using base R
+# Select equivalent
+cat("Selected columns (Species, Sepal.Length, Sepal.Width):\n")
+print(head(iris[, c("Species", "Sepal.Length", "Sepal.Width")]))
+
+cat("\nFiltered data (setosa with Sepal.Length > 5):\n")
+filtered_data <- iris[iris$Species == "setosa" & iris$Sepal.Length > 5, ]
+print(head(filtered_data))
+
+cat("\nWith new columns:\n")
+iris_with_ratio <- iris
+iris_with_ratio$Sepal.Ratio <- iris$Sepal.Length / iris$Sepal.Width
+iris_with_ratio$Size.Category <- ifelse(iris$Sepal.Length > median(iris$Sepal.Length), "Large", "Small")
+print(head(iris_with_ratio[, c("Species", "Sepal.Length", "Sepal.Width", "Sepal.Ratio", "Size.Category")]))
+```
+
+### Group Operations and Summarizing
+
+```         
+#| echo: true
+#| eval: false
+# Group by and summarize
+iris_summary <- iris_tbl %>%
+  group_by(Species) %>%
+  summarise(
+    n = n(),
+    mean_sepal_length = mean(Sepal.Length),
+    sd_sepal_length = sd(Sepal.Length),
+    median_sepal_width = median(Sepal.Width),
+    min_petal_length = min(Petal.Length),
+    max_petal_length = max(Petal.Length),
+    .groups = "drop"
+  )
+
+print(iris_summary)
+
+# More complex grouping
+mtcars_summary <- mtcars_tbl %>%
+  group_by(cyl, gear) %>%
+  summarise(
+    count = n(),
+    avg_mpg = mean(mpg),
+    avg_hp = mean(hp),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(avg_mpg))
+
+print(mtcars_summary)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Simulate group operations using base R
+cat("Species Summary:\n")
+species_summary <- aggregate(cbind(Sepal.Length) ~ Species, data = iris, 
+                           FUN = function(x) c(
+                             count = length(x),
+                             mean = mean(x),
+                             sd = sd(x)
+                           ))
+print(species_summary)
+
+cat("\nMTCars grouped by cylinders and gears:\n")
+mtcars_grouped <- aggregate(cbind(mpg, hp) ~ cyl + gear, data = mtcars,
+                          FUN = function(x) c(mean = mean(x)))
+print(head(mtcars_grouped))
+```
+
+### Data Reshaping with tidyr
+
+```         
+#| echo: true
+#| eval: false
+# Pivot longer (wide to long format)
+iris_long <- iris_tbl %>%
+  pivot_longer(
+    cols = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+    names_to = "measurement",
+    values_to = "value"
+  )
+
+head(iris_long, 10)
+
+# Pivot wider (long to wide format)
+iris_summary_wide <- iris_long %>%
+  group_by(Species, measurement) %>%
+  summarise(mean_value = mean(value), .groups = "drop") %>%
+  pivot_wider(
+    names_from = measurement,
+    values_from = mean_value
+  )
+
+print(iris_summary_wide)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Simulate reshaping operations
+cat("Long format example (first 10 rows):\n")
+# Create a simplified long format manually
+measurements <- c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")
+long_example <- data.frame(
+  Species = rep(iris$Species[1:3], 4),
+  measurement = rep(measurements, each = 3),
+  value = c(iris$Sepal.Length[1:3], iris$Sepal.Width[1:3], 
+           iris$Petal.Length[1:3], iris$Petal.Width[1:3])
+)
+print(head(long_example, 10))
+
+cat("\nSpecies means by measurement:\n")
+print(aggregate(. ~ Species, data = iris[, 1:4], FUN = mean))
+```
+
+## Modern Visualization with ggplot2 (20 minutes)
+
+ggplot2 provides a powerful grammar of graphics for creating sophisticated visualizations.
+
+### Basic ggplot2 Syntax
+
+```         
+#| echo: true
+#| eval: false
+# Basic ggplot structure
+# ggplot(data) + geom_function() + aesthetics + themes
+
+# Simple histogram
+ggplot(iris_tbl, aes(x = Sepal.Length)) +
+  geom_histogram(bins = 20, fill = "lightblue", color = "darkblue", alpha = 0.7) +
+  geom_vline(aes(xintercept = mean(Sepal.Length)), 
+             color = "red", linetype = "dashed", size = 1) +
+  labs(
+    title = "Distribution of Sepal Length",
+    subtitle = "Iris Dataset",
+    x = "Sepal Length (cm)",
+    y = "Frequency",
+    caption = "Red line shows mean value"
+  ) +
+  theme_minimal()
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Create base R equivalent
+hist(iris$Sepal.Length,
+     main = "Distribution of Sepal Length\nIris Dataset",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 20)
+abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "Mean", col = "red", lwd = 2, lty = 2)
+```
+
+### Advanced Scatter Plots
+
+```         
+#| echo: true
+#| eval: false
+# Scatter plot with facets and regression lines
+ggplot(iris_tbl, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE) +
+  facet_wrap(~ Species, ncol = 3) +
+  scale_color_viridis_d() +
+  labs(
+    title = "Sepal Length vs Width by Species",
+    x = "Sepal Length (cm)",
+    y = "Sepal Width (cm)"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, hjust = 0.5),
+    strip.text = element_text(size = 12, face = "bold")
+  )
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Create base R equivalent with multiple plots
+par(mfrow = c(1, 3))
+species_colors <- c("red", "blue", "green")
+species_names <- levels(iris$Species)
+
+for(i in 1:3) {
+  species_data <- iris[iris$Species == species_names[i], ]
+  plot(species_data$Sepal.Length, species_data$Sepal.Width,
+       main = paste("Species:", species_names[i]),
+       xlab = "Sepal Length (cm)",
+       ylab = "Sepal Width (cm)",
+       col = species_colors[i],
+       pch = 19,
+       cex = 1.2)
+  abline(lm(Sepal.Width ~ Sepal.Length, data = species_data), 
+         col = species_colors[i], lwd = 2)
+}
+par(mfrow = c(1, 1))
+```
+
+### Box Plots and Violin Plots
+
+```         
+#| echo: true
+#| eval: false
+# Box plots with jitter points
+ggplot(iris_tbl, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin(alpha = 0.5) +
+  geom_boxplot(width = 0.3, alpha = 0.7) +
+  geom_jitter(width = 0.1, alpha = 0.5, size = 1) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Sepal Length Distribution by Species",
+    y = "Sepal Length (cm)",
+    x = "Species"
+  ) +
+  theme_classic() +
+  theme(legend.position = "none")
+
+# Multiple variables box plot
+iris_long %>%
+  ggplot(aes(x = Species, y = value, fill = measurement)) +
+  geom_boxplot() +
+  facet_wrap(~ measurement, scales = "free_y") +
+  scale_fill_viridis_d() +
+  labs(
+    title = "All Measurements by Species",
+    y = "Value (cm)",
+    fill = "Measurement"
+  ) +
+  theme_minimal()
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Box plot with base R
+boxplot(Sepal.Length ~ Species, data = iris,
+        main = "Sepal Length Distribution by Species",
+        xlab = "Species",
+        ylab = "Sepal Length (cm)",
+        col = c("lightcoral", "lightblue", "lightgreen"))
+
+# Add jitter points
+stripchart(Sepal.Length ~ Species, data = iris,
+           vertical = TRUE, method = "jitter",
+           add = TRUE, pch = 19, col = "darkred", cex = 0.5)
+```
+
+### Correlation Heatmaps
+
+```         
+#| echo: true
+#| eval: false
+# Create correlation matrix visualization
+library(corrplot)
+
+# Correlation matrix
+cor_matrix <- iris_tbl %>%
+  select(where(is.numeric)) %>%
+  cor()
+
+# Using corrplot
+corrplot(cor_matrix, 
+         method = "color",
+         type = "upper",
+         order = "hclust",
+         tl.cex = 0.8,
+         tl.col = "black")
+
+# Using ggplot2
+cor_matrix %>%
+  as.data.frame() %>%
+  rownames_to_column("var1") %>%
+  pivot_longer(-var1, names_to = "var2", values_to = "correlation") %>%
+  ggplot(aes(x = var1, y = var2, fill = correlation)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limit = c(-1, 1)) +
+  theme_minimal() +
+  labs(title = "Correlation Matrix Heatmap") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Create correlation matrix with base R
+cor_matrix <- cor(iris[, 1:4])
+print("Correlation Matrix:")
+print(round(cor_matrix, 2))
+
+# Simple heatmap
+heatmap(cor_matrix, 
+        main = "Correlation Matrix Heatmap",
+        col = colorRampPalette(c("blue", "white", "red"))(50))
+```
+
+## Statistical Analysis with Modern R (15 minutes)
+
+Let's perform statistical analyses using both base R and tidyverse approaches.
+
+### Enhanced Descriptive Statistics
+
+```         
+#| echo: true
+#| eval: false
+# Modern approach with dplyr
+iris_stats <- iris_tbl %>%
+  group_by(Species) %>%
+  summarise(
+    across(where(is.numeric), 
+           list(mean = mean, 
+                median = median, 
+                sd = sd, 
+                min = min, 
+                max = max,
+                q25 = ~quantile(.x, 0.25),
+                q75 = ~quantile(.x, 0.75)), 
+           .names = "{.col}_{.fn}"),
+    .groups = "drop"
+  )
+
+print(iris_stats)
+
+# Custom summary function with dplyr
+describe_numeric <- function(x) {
+  tibble(
+    n = length(x),
+    mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE),
+    skewness = moments::skewness(x, na.rm = TRUE),
+    kurtosis = moments::kurtosis(x, na.rm = TRUE)
+  )
+}
+
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map_dfr(describe_numeric, .id = "variable")
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Base R equivalent
+describe_variable <- function(x) {
+  c(mean = mean(x, na.rm = TRUE),
+    median = median(x, na.rm = TRUE),
+    sd = sd(x, na.rm = TRUE),
+    min = min(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    q25 = quantile(x, 0.25, na.rm = TRUE),
+    q75 = quantile(x, 0.75, na.rm = TRUE))
+}
+
+print("Descriptive statistics by species:")
+by(iris[, 1:4], iris$Species, function(x) apply(x, 2, describe_variable))
+```
+
+### Modern Hypothesis Testing
+
+```         
+#| echo: true
+#| eval: false
+# Using broom package for tidy statistical output
+library(broom)
+
+# T-tests with tidy output
+t_test_results <- iris_tbl %>%
+  filter(Species %in% c("setosa", "versicolor")) %>%
+  t.test(Sepal.Length ~ Species, data = .) %>%
+  tidy()
+
+print(t_test_results)
+
+# Multiple t-tests across variables
+iris_long %>%
+  filter(Species %in% c("setosa", "versicolor")) %>%
+  group_by(measurement) %>%
+  do(tidy(t.test(value ~ Species, data = .))) %>%
+  arrange(p.value)
+
+# ANOVA with tidy output
+anova_results <- iris_tbl %>%
+  aov(Sepal.Length ~ Species, data = .) %>%
+  tidy()
+
+print(anova_results)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Base R statistical tests
+setosa_sepal <- iris[iris$Species == "setosa", "Sepal.Length"]
+versicolor_sepal <- iris[iris$Species == "versicolor", "Sepal.Length"]
+t_test_result <- t.test(setosa_sepal, versicolor_sepal)
+print(t_test_result)
+
+# ANOVA
+anova_result <- aov(Sepal.Length ~ Species, data = iris)
+print(summary(anova_result))
+```
+
+### Modern Linear Modeling
+
+```         
+#| echo: true
+#| eval: false
+# Linear modeling with broom
+# Simple regression
+model1 <- mtcars_tbl %>%
+  lm(mpg ~ wt, data = .) 
+
+model1 %>%
+  tidy() %>%
+  mutate(across(where(is.numeric), round, 4))
+
+model1 %>%
+  glance() %>%
+  select(r.squared, adj.r.squared, p.value, AIC, BIC)
+
+# Multiple regression with model comparison
+model2 <- mtcars_tbl %>%
+  lm(mpg ~ wt + hp + cyl, data = .)
+
+# Compare models
+models_comparison <- tibble(
+  model = c("Simple", "Multiple"),
+  formula = c("mpg ~ wt", "mpg ~ wt + hp + cyl"),
+  r_squared = c(
+    glance(model1)$r.squared,
+    glance(model2)$r.squared
+  ),
+  AIC = c(AIC(model1), AIC(model2)),
+  BIC = c(BIC(model1), BIC(model2))
+)
+
+print(models_comparison)
+
+# Predictions with confidence intervals
+new_cars <- tibble(
+  wt = c(2.5, 3.0, 3.5),
+  hp = c(120, 150, 180),
+  cyl = c(4, 6, 8)
+)
+
+predictions <- model2 %>%
+  augment(newdata = new_cars, interval = "confidence")
+
+print(predictions)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Base R modeling
+model1 <- lm(mpg ~ wt, data = mtcars)
+model2 <- lm(mpg ~ wt + hp + cyl, data = mtcars)
+
+print("Simple model summary:")
+print(summary(model1)$coefficients)
+
+print("Multiple model summary:")
+print(summary(model2)$coefficients)
+
+# Model comparison
+print("Model comparison:")
+print(data.frame(
+  Model = c("Simple", "Multiple"),
+  R_squared = c(summary(model1)$r.squared, summary(model2)$r.squared),
+  AIC = c(AIC(model1), AIC(model2))
+))
+```
+
+## Advanced Programming with purrr (10 minutes)
+
+The purrr package provides functional programming tools that make code more readable and efficient.
+
+### Map Functions
+
+```         
+#| echo: true
+#| eval: false
+library(purrr)
+
+# Apply function to multiple columns
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map(mean)
+
+# Map with different output types
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map_dbl(sd)  # Returns numeric vector
+
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map_chr(~paste("Mean:", round(mean(.x), 2)))  # Returns character vector
+
+# Map over groups
+iris_tbl %>%
+  split(.$Species) %>%
+  map(~lm(Sepal.Length ~ Sepal.Width, data = .x)) %>%
+  map(summary) %>%
+  map_dbl(~.x$r.squared)
+```
+
+**Show Output**
+
+```         
+#| echo: false
+#| eval: true
+# Base R equivalent
+print("Column means:")
+sapply(iris[, 1:4], mean)
+
+print("Column standard deviations:")
+sapply(iris[, 1:4], sd)
+
+print("R-squared by species:")
+species_rsq <- sapply(levels(iris$Species), function(sp) {
+  species_data <- iris[iris$Species == sp, ]
+  model <- lm(Sepal.Length ~ Sepal.Width, data = species_data)
+  summary(model)$r.squared
+})
+print(round(species_rsq, 3))
+```
+
+🔍 **Exercise 1**: Using tidyverse functions, create a comprehensive analysis of the mtcars dataset that includes:
+
+1.  A summary of fuel efficiency (mpg) by number of cylinders using `group_by()` and `summarise()`
+
+2.  A scatter plot using ggplot2 showing the relationship between weight and mpg, colored by cylinders
+
+3.  Create a new categorical variable for car efficiency (High: \>20 mpg, Medium: 15-20 mpg, Low: \<15 mpg)
+
+4.  Use `map()` to calculate the correlation between mpg and all other numeric variables
