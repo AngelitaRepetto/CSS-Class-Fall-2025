@@ -1,7 +1,9 @@
 ---
-title: "Lab One: Part Two"
+title: "CSS Lab Two Test 2"
+format: html
 editor: visual
 ---
+
 ---
 title: "Part 2: Data Analysis, Visualization, and Programming"
 format: 
@@ -87,12 +89,19 @@ if (!require(tidyverse)) {
 ```{r}
 #| echo: false
 #| eval: true
-# Simulate loading packages
-cat("── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n")
-cat("✔ ggplot2 3.4.0     ✔ purrr   1.0.1\n")
-cat("✔ tibble  3.1.8     ✔ dplyr   1.1.0\n")
-cat("✔ tidyr   1.3.0     ✔ stringr 1.5.0\n")
-cat("✔ readr   2.1.3     ✔ forcats 0.5.2\n")
+# Load libraries for this session
+library(tidyverse)  # Loads dplyr, ggplot2, readr, tibble, stringr, forcats
+library(dplyr)      # Data manipulation
+library(ggplot2)    # Grammar of graphics plotting
+
+# Alternative method
+require(tidyverse)  # Similar to library() but returns TRUE/FALSE
+
+# Check if package is installed before loading
+if (!require(tidyverse)) {
+  install.packages("tidyverse")
+  library(tidyverse)
+}
 ```
 :::
 
@@ -160,9 +169,20 @@ glimpse(mtcars_tbl)
 ```{r}
 #| echo: false
 #| eval: true
-# Load and explore iris dataset
+# Load libraries first
+library(tidyverse)
+
+# Load datasets (assuming tidyverse is loaded)
 data(iris)
-head(iris)
+data(mtcars)
+
+# Convert to tibbles (modern data frames)
+iris_tbl <- as_tibble(iris)
+mtcars_tbl <- as_tibble(mtcars, rownames = "car_name")
+
+# Explore with tidyverse functions
+glimpse(iris_tbl)
+glimpse(mtcars_tbl)
 ```
 :::
 
@@ -198,14 +218,31 @@ iris_tbl %>%
 ```{r}
 #| echo: false
 #| eval: true
-# Show selected columns
-print("Selected columns (Species, Sepal.Length, Sepal.Width):")
-print(head(iris[, c("Species", "Sepal.Length", "Sepal.Width")]))
+# Load libraries first
+library(tidyverse)
 
-# Show filtered data
-filtered_data <- iris[iris$Species == "setosa" & iris$Sepal.Length > 5, ]
-print("Filtered data (setosa with Sepal.Length > 5):")
-print(head(filtered_data))
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# select() - choose columns
+iris_tbl %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  head()
+
+# filter() - choose rows
+iris_tbl %>%
+  filter(Species == "setosa", Sepal.Length > 5) %>%
+  head()
+
+# mutate() - create new columns
+iris_tbl %>%
+  mutate(
+    Sepal.Ratio = Sepal.Length / Sepal.Width,
+    Size.Category = if_else(Sepal.Length > median(Sepal.Length),
+                            "Large", "Small")
+  ) %>%
+  head()
 ```
 :::
 
@@ -246,15 +283,40 @@ print(mtcars_summary)
 ```{r}
 #| echo: false
 #| eval: true
-# Show species summary using base R
-print("Species Summary:")
-species_means <- aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
-print(species_means)
+# Load libraries first
+library(tidyverse)
 
-# Show mtcars grouping
-print("MTCars grouped by cylinders:")
-mtcars_grouped <- aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
-print(mtcars_grouped)
+# Load data
+data(iris)
+data(mtcars)
+iris_tbl <- as_tibble(iris)
+mtcars_tbl <- as_tibble(mtcars, rownames = "car_name")
+
+# Group by and summarize
+iris_summary <- iris_tbl %>%
+  group_by(Species) %>%
+  summarise(
+    n = n(),
+    mean_sepal_length = mean(Sepal.Length),
+    sd_sepal_length = sd(Sepal.Length),
+    median_sepal_width = median(Sepal.Width),
+    min_petal_length = min(Petal.Length),
+    max_petal_length = max(Petal.Length),
+    .groups = "drop"
+  )
+print(iris_summary)
+
+# More complex grouping
+mtcars_summary <- mtcars_tbl %>%
+  group_by(cyl, gear) %>%
+  summarise(
+    count = n(),
+    avg_mpg = mean(mpg),
+    avg_hp = mean(hp),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(avg_mpg))
+print(mtcars_summary)
 ```
 :::
 
@@ -289,14 +351,27 @@ ggplot(iris_tbl, aes(x = Sepal.Length)) +
 ```{r}
 #| echo: false
 #| eval: true
-# Create base R histogram
-hist(iris$Sepal.Length,
-     main = "Distribution of Sepal Length",
-     xlab = "Sepal Length (cm)",
-     ylab = "Frequency",
-     col = "lightblue",
-     border = "darkblue")
-abline(v = mean(iris$Sepal.Length), col = "red", lwd = 2, lty = 2)
+#| warning: false
+# Load libraries first
+library(tidyverse)
+
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# Simple histogram
+ggplot(iris_tbl, aes(x = Sepal.Length)) +
+  geom_histogram(bins = 20, fill = "lightblue", color = "darkblue", alpha = 0.7) +
+  geom_vline(aes(xintercept = mean(Sepal.Length)),
+             color = "red", linetype = "dashed", size = 1) +
+  labs(
+    title = "Distribution of Sepal Length",
+    subtitle = "Iris Dataset",
+    x = "Sepal Length (cm)",
+    y = "Frequency",
+    caption = "Red line shows mean value"
+  ) +
+  theme_minimal()
 ```
 :::
 
@@ -328,15 +403,29 @@ ggplot(iris_tbl, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
 ```{r}
 #| echo: false
 #| eval: true
-# Create simple scatter plot with base R
-plot(iris$Sepal.Length, iris$Sepal.Width,
-     main = "Sepal Length vs Width",
-     xlab = "Sepal Length (cm)",
-     ylab = "Sepal Width (cm)",
-     col = c("red", "blue", "green")[iris$Species],
-     pch = 19)
-legend("topright", legend = levels(iris$Species),
-       col = c("red", "blue", "green"), pch = 19)
+# Load libraries first
+library(tidyverse)
+
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# Scatter plot with facets and regression lines
+ggplot(iris_tbl, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE) +
+  facet_wrap(~ Species, ncol = 3) +
+  scale_color_viridis_d() +
+  labs(
+    title = "Sepal Length vs Width by Species",
+    x = "Sepal Length (cm)",
+    y = "Sepal Width (cm)"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, hjust = 0.5),
+    strip.text = element_text(size = 12, face = "bold")
+  )
 ```
 :::
 
@@ -371,14 +460,29 @@ print(iris_stats)
 ```{r}
 #| echo: false
 #| eval: true
-# Simple descriptive statistics
-print("Descriptive Statistics by Species:")
-print("Setosa means:")
-print(colMeans(iris[iris$Species == "setosa", 1:4]))
-print("Versicolor means:")
-print(colMeans(iris[iris$Species == "versicolor", 1:4]))
-print("Virginica means:")
-print(colMeans(iris[iris$Species == "virginica", 1:4]))
+# Load libraries first
+library(tidyverse)
+
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# Modern approach with dplyr
+iris_stats <- iris_tbl %>%
+  group_by(Species) %>%
+  summarise(
+    across(where(is.numeric),
+           list(mean = mean,
+                median = median,
+                sd = sd,
+                min = min,
+                max = max,
+               q25 = ~quantile(.x, 0.25),
+               q75 = ~quantile(.x, 0.75)),
+           .names = "{.col}_{.fn}"),
+    .groups = "drop"
+  )
+print(iris_stats)
 ```
 :::
 
@@ -403,14 +507,22 @@ print(summary(anova_results))
 ```{r}
 #| echo: false
 #| eval: true
-# Simple t-test
-setosa_sepal <- iris$Sepal.Length[iris$Species == "setosa"]
-versicolor_sepal <- iris$Sepal.Length[iris$Species == "versicolor"]
+# Load libraries first
+library(tidyverse)
 
-t_result <- t.test(setosa_sepal, versicolor_sepal)
-print("T-test Results:")
-print(paste("t-statistic:", round(t_result$statistic, 3)))
-print(paste("p-value:", round(t_result$p.value, 6)))
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# T-tests with tidy output
+t_test_results <- iris_tbl %>%
+  filter(Species %in% c("setosa", "versicolor")) %>%
+  t.test(Sepal.Length ~ Species, data = .)
+print(t_test_results)
+
+# ANOVA with tidy output
+anova_results <- aov(Sepal.Length ~ Species, data = iris_tbl)
+print(summary(anova_results))
 ```
 :::
 
@@ -433,11 +545,20 @@ summary(model2)
 ```{r}
 #| echo: false
 #| eval: true
-# Simple linear models
-model1 <- lm(mpg ~ wt, data = mtcars)
-print("Simple Model Results:")
-print(summary(model1)$coefficients)
-print(paste("R-squared:", round(summary(model1)$r.squared, 3)))
+# Load libraries first
+library(tidyverse)
+
+# Load data and create tibble
+data(mtcars)
+mtcars_tbl <- as_tibble(mtcars, rownames = "car_name")
+
+# Linear modeling
+model1 <- lm(mpg ~ wt, data = mtcars_tbl)
+model2 <- lm(mpg ~ wt + hp + cyl, data = mtcars_tbl)
+
+# Compare models
+summary(model1)
+summary(model2)
 ```
 :::
 
@@ -470,12 +591,28 @@ iris_tbl %>%
 ```{r}
 #| echo: false
 #| eval: true
-# Base R equivalents
-print("Column means:")
-print(sapply(iris[, 1:4], mean))
+# Load libraries first
+library(tidyverse)
 
-print("Column standard deviations:")
-print(sapply(iris[, 1:4], sd))
+# Load data and create tibble
+data(iris)
+iris_tbl <- as_tibble(iris)
+
+# Apply function to multiple columns
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map(mean)
+
+# Map with different output types
+iris_tbl %>%
+  select(where(is.numeric)) %>%
+  map_dbl(sd)
+
+# Map over groups
+iris_tbl %>%
+  split(.$Species) %>%
+  map(~lm(Sepal.Length ~ Sepal.Width, data = .x)) %>%
+  map_dbl(~summary(.x)$r.squared)
 ```
 :::
 
@@ -490,17 +627,16 @@ print(sapply(iris[, 1:4], sd))
 - Calculate the correlation between mpg and all other numeric variables
 
 ::: {.callout-note collapse="true"}
-
-```{r, include=FALSE}
-#| echo: true
-#| eval: true
+## Click to see Exercise 1 Answer
+```{r}
+#| include: false
 # Exercise solution using base R
 data(mtcars)
 
 # 1. Summary by cylinders
 print("1. Fuel efficiency by cylinders:")
-mpg_summary <- aggregate(mpg ~ cyl, data = mtcars, 
-                        FUN = function(x) c(count = length(x), mean = mean(x)))
+mpg_summary <- aggregate(mpg ~ cyl, data = mtcars,
+                         FUN = function(x) c(count = length(x), mean = mean(x)))
 print(mpg_summary)
 
 # 2. Would create scatter plot with ggplot2
@@ -516,11 +652,18 @@ print("\n3. Efficiency categories:")
 print(efficiency_counts)
 
 # 4. Correlations with mpg
-correlations <- sapply(mtcars[, names(mtcars) != "mpg" & sapply(mtcars, is.numeric)], 
+correlations <- sapply(mtcars[, names(mtcars) != "mpg" & sapply(mtcars, is.numeric)],
                       function(x) cor(x, mtcars$mpg))
 print("\n4. Correlations with MPG:")
 print(round(sort(correlations, decreasing = TRUE), 3))
 ```
+
+**Manual Answer Summary:**
+- 4-cylinder cars have the highest average MPG (26.7)
+- 8-cylinder cars have the lowest average MPG (15.1)  
+- Weight shows the strongest negative correlation with MPG (-0.868)
+- Number of cylinders also strongly negatively correlates with MPG (-0.852)
+- Most cars fall into the Medium efficiency category (15-20 mpg)
 :::
 
 ---
