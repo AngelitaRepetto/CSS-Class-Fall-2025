@@ -25,9 +25,9 @@ By the end of this lab, you will be able to:
 
 ---
 
-## Part 2: Data Analysis, Visualization, and Programming (70 minutes)
+## Part 2: Data Analysis, Visualization, and Programming 
 
-### Package Installation and Library Management (10 minutes)
+### Package Installation and Library Management 
 Before diving into advanced data analysis, let's learn how to install and use R packages. Packages extend R's functionality significantly.
 
 #### Installing Packages
@@ -143,7 +143,7 @@ cat("dplyr: 1.1.0\n")
 ```
 :::
 
-### Advanced Data Exploration with tidyverse (15 minutes)
+### Advanced Data Exploration with tidyverse 
 Now let's explore data using modern R techniques with tidyverse packages.
 
 #### Loading and Exploring Datasets with dplyr
@@ -320,7 +320,7 @@ print(mtcars_summary)
 ```
 :::
 
-### Modern Visualization with ggplot2 (20 minutes)
+### Modern Visualization with ggplot2
 ggplot2 provides a powerful grammar of graphics for creating sophisticated visualizations.
 
 #### Basic ggplot2 Syntax
@@ -429,7 +429,7 @@ ggplot(iris_tbl, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
 ```
 :::
 
-### Statistical Analysis with Modern R (15 minutes)
+### Statistical Analysis with Modern R 
 Let's perform statistical analyses using both base R and tidyverse approaches.
 
 #### Enhanced Descriptive Statistics
@@ -562,7 +562,7 @@ summary(model2)
 ```
 :::
 
-### Advanced Programming with purrr (10 minutes)
+### Advanced Programming with purrr 
 
 #### Map Functions
 
