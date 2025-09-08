@@ -7,16 +7,179 @@ editor: visual
 # Lab 2: Data Acquisition and Exploration (With Code Explanations)
 
 ## Learning Objectives
+
 By the end of this lab, you will be able to:
+
 - Understand what file paths are and how to find them
+
 - Load CSV and XML data files into R
+
 - Explore basic data structure and quality
+
 - Understand different types of data sources
+
 - Practice basic data exploration techniques
 
 ---
 
+## Part 0: Guide to Common Symbols
+
+# R Symbols and Operators Quick Reference Guide
+
+---
+
+## Assignment and Data Access
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `<-` | Assignment operator | Saves data to a variable | `my_data <- read_csv("file.csv")` |
+| `=` | Alternative assignment | Same as `<-` (less common) | `my_data = read_csv("file.csv")` |
+| `$` | Dollar sign | Selects a column from a dataset | `my_data$age` |
+| `[[]]` | Double brackets | Alternative way to select columns | `my_data[["age"]]` |
+| `[]` | Square brackets | Selects rows/columns by position | `my_data[1:5, 2:4]` |
+
+---
+
+## Pipes and Connections
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `%>%` | Pipe operator | Passes result to the next function | `data %>% filter(age > 18)` |
+| `\|>` | Native pipe | New R pipe (same as `%>%`) | `data \|> filter(age > 18)` |
+
+---
+
+## Comparison Operators
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `==` | Equal to | Checks if values are exactly equal | `age == 25` |
+| `!=` | Not equal to | Checks if values are different | `age != 25` |
+| `>` | Greater than | Checks if left is bigger | `age > 18` |
+| `<` | Less than | Checks if left is smaller | `age < 65` |
+| `>=` | Greater than or equal | Checks if left is bigger or same | `age >= 18` |
+| `<=` | Less than or equal | Checks if left is smaller or same | `age <= 65` |
+
+---
+
+## Logical Operators
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `&` | AND | Both conditions must be true | `age > 18 & age < 65` |
+| `\|` | OR | Either condition can be true | `state == "CA" \| state == "NY"` |
+| `!` | NOT | Reverses TRUE/FALSE | `!is.na(age)` |
+
+---
+
+## Mathematical Operators
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `+` | Addition | Adds numbers | `age + 1` |
+| `-` | Subtraction | Subtracts numbers | `age - 1` |
+| `*` | Multiplication | Multiplies numbers | `age * 2` |
+| `/` | Division | Divides numbers | `age / 2` |
+| `^` | Exponent | Raises to a power | `age^2` |
+
+---
+
+## Special Characters
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `~` | Tilde (formula) | Creates formulas for functions | `summarise(across(everything(), ~mean(.)))` |
+| `.` | Dot | Represents "the current data" in pipes | `data %>% filter(age > mean(.$age))` |
+| `#` | Hash/Comment | Creates comments (ignored by R) | `# This is a comment` |
+| `""` | Quotes | Defines text strings | `"Hello World"` |
+| `''` | Single quotes | Alternative for text strings | `'Hello World'` |
+
+---
+
+## Missing Data and Special Values
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `NA` | Not Available | Represents missing data | `c(1, 2, NA, 4)` |
+| `NULL` | Null | Represents "nothing" or empty | `my_var <- NULL` |
+| `Inf` | Infinity | Result of dividing by zero | `1/0` |
+| `NaN` | Not a Number | Result of impossible math | `0/0` |
+
+---
+
+## Function and Data Creation
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `()` | Parentheses | Groups expressions or function arguments | `mean(c(1,2,3))` |
+| `c()` | Combine function | Creates vectors (lists of values) | `c(1, 2, 3, 4)` |
+| `{}` | Curly braces | Groups multiple lines of code | `if (x > 0) { print("positive") }` |
+
+---
+
+## Text and Output
+
+| Symbol | Name | What it does | Example |
+|--------|------|--------------|---------|
+| `\n` | New line | Creates line break in text output | `cat("Line 1\nLine 2")` |
+| `\t` | Tab | Creates tab spacing | `cat("Name\tAge")` |
+| `paste()` | Paste function | Combines text | `paste("Hello", "World")` |
+| `paste0()` | Paste with no space | Combines text without spaces | `paste0("Hello", "World")` |
+
+---
+
+## Common Function Patterns
+
+### Data Exploration
+```r
+data %>%                    # Take the data, then
+  filter(age > 18) %>%      # Keep rows where age > 18, then  
+  select(name, age) %>%     # Pick only name and age columns, then
+  arrange(desc(age))        # Sort by age (highest first)
+```
+
+### Summary Statistics
+```r
+data %>%                              # Take the data, then
+  group_by(category) %>%              # Group by category, then
+  summarise(                          # Create summaries:
+    count = n(),                      # Count rows in each group
+    avg_age = mean(age, na.rm = TRUE) # Average age (remove missing)
+  )
+```
+
+### Missing Value Checks
+```r
+sum(is.na(data$age))        # Count missing values in age column
+data %>%                    # Take the data, then
+  filter(!is.na(age))       # Keep rows where age is NOT missing
+```
+
+---
+
+## Pro Tips for Beginners
+
+1. **Spacing doesn't matter**: `x<-5` and `x <- 5` both work, but `x <- 5` is easier to read
+2. **Case matters**: `Data` and `data` are different things
+3. **Use tab completion**: Type the first few letters and press Tab for suggestions
+4. **Read error messages**: They often tell you exactly what's wrong
+5. **Use the help**: Type `?function_name` to get help (like `?mean`)
+
+---
+
+## When You See This... It Means...
+
+- `Error: object 'x' not found` → You haven't created the variable `x` yet
+- `Error: could not find function "glimpse"` → You need to load a package first (`library(tidyverse)`)
+- `Warning: NAs introduced by coercion` → R couldn't convert some values (like text to numbers)
+- `[1] 5 10 15` → The output shows position numbers `[1]` and the values `5 10 15`
+
+
 ## Part 1: Understanding File Paths and Loading Data (20 minutes)
+
+### Download Data from D2L  
+
+- For this lab, you need to download two datasets from D2L from the Data folder (Lab 2 Data)
 
 ### What is a File Path?
 A **file path** tells your computer exactly where to find a file. Think of it like a street address for your files.
