@@ -1,0 +1,9 @@
+List of 8
+ $ source             : chr "IPUMS USA"
+ $ extract_date       : Date[1:1], format: "2025-09-08"
+ $ sample_type        : chr "2022 American Community Survey"
+ $ sample_size        : int 3405809
+ $ population_estimate: num 3.35e+08
+ $ variables          : chr [1:23] "YEAR" "SAMPLE" "SERIAL" "CBSERIAL" ...
+ $ geographic_coverage: chr "United States"
+ $ notes              : chr "Person-level microdata with survey weights"

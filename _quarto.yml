@@ -20,9 +20,10 @@ website:
         menu:
           - text: "Lab One - Part One"
             href: assignments/Lab One.qmd
-          - text: "Lab Two - Part Two"
+          - text: "Lab One - Part Two"
             href: assignments/Lab One Part Two - Edited.qmd
-
+          - text: "Lab Two"
+            href: assignments/Lab Two.qmd
     right:
       - icon: envelope
         href: mailto:[arepetto@msu.edu]

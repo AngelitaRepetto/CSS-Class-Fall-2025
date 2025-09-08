@@ -1,0 +1,549 @@
+---
+title: "CSS Lab Two"
+format: html
+editor: visual
+---
+
+# Lab 2: Data Acquisition and Exploration (With Code Explanations)
+
+## Learning Objectives
+By the end of this lab, you will be able to:
+- Understand what file paths are and how to find them
+- Load CSV and XML data files into R
+- Explore basic data structure and quality
+- Understand different types of data sources
+- Practice basic data exploration techniques
+
+---
+
+## Part 1: Understanding File Paths and Loading Data (20 minutes)
+
+### What is a File Path?
+A **file path** tells your computer exactly where to find a file. Think of it like a street address for your files.
+
+**Example file path:** `/Users/mariarepetto/Documents/CSS Course Fall 2025/usa_00042.xml`
+
+This breaks down as:
+- `/Users/mariarepetto/` = Your user folder
+- `Documents/` = Documents folder
+- `CSS Course Fall 2025/` = Your class folder
+- `usa_00042.xml` = The actual file name
+
+### How to Find Your File Path
+
+**On Mac:**
+1. Right-click on your file
+2. Hold down the Option key
+3. Select "Copy as Pathname"
+
+**On Windows:**
+1. Right-click on your file
+2. Select "Properties"
+3. Copy the path shown
+
+**The Easy Way in RStudio:**
+1. In the Files panel (bottom right), navigate to your file
+2. Click on the file name
+3. RStudio will show you the path
+
+### Loading Your Data
+
+We have two datasets to work with:
+1. A Reddit dataset (CSV file)
+2. A Census dataset (XML + CSV files)
+
+```{r}
+# Load required libraries
+library(tidyverse)  # loads a collection of packages for data manipulation and visualization
+library(ipumsr)     # loads a specialized package for working with IPUMS census data
+
+# Load the Reddit dataset (CSV file)
+# Replace this path with YOUR actual file path
+reddit_data <- read_csv("/Users/mariarepetto/Documents/CSS Course Fall 2025/NetflixBestOf_reddit.csv")
+# read_csv() = function that reads comma-separated value files into R
+# <- = assignment operator that saves the data into a variable called "reddit_data"
+
+# Load the Census dataset (XML + data file)
+# The XML file contains information about the data structure
+ddi <- read_ipums_ddi("/Users/mariarepetto/Documents/CSS Course Fall 2025/usa_00042.xml")
+# read_ipums_ddi() = reads the data definition file that explains the census data structure
+# ddi = "data definition interface" - contains metadata about variables
+
+census_data <- read_ipums_micro(ddi)
+# read_ipums_micro() = uses the ddi information to properly load the census data
+# "micro" refers to individual-level data (each row = one person)
+
+# Let's see what we loaded
+cat("Reddit data dimensions:", nrow(reddit_data), "rows x", ncol(reddit_data), "columns\n")
+# cat() = prints text to the console (like print, but for simple text)
+# nrow() = counts the number of rows in the dataset
+# ncol() = counts the number of columns in the dataset
+# \n = creates a new line
+
+cat("Census data dimensions:", nrow(census_data), "rows x", ncol(census_data), "columns\n")
+```
+
+**Important:** You need to change the file paths above to match where YOUR files are located on your computer!
+
+---
+
+## Part 2: Exploring the Reddit Dataset (15 minutes)
+
+### Basic Data Exploration
+
+```{r}
+# Look at the structure of our Reddit data
+glimpse(reddit_data)
+# glimpse() = shows a compact view of your data including:
+# - number of rows and columns
+# - column names and data types
+# - first few values in each column
+
+# See the first few rows
+head(reddit_data)
+# head() = shows the first 6 rows of your dataset (like peeking at the top)
+
+# Check what columns we have
+names(reddit_data)
+# names() = returns a list of all column names in your dataset
+```
+
+### Understanding Reddit Data
+
+Reddit posts have several key pieces of information:
+- **Title**: The headline of the post
+- **Score**: How many upvotes minus downvotes
+- **Comments**: Number of comments on the post
+- **Subreddit**: Which community it was posted in
+
+```{r}
+# Basic summary statistics
+summary(reddit_data)
+# summary() = provides basic statistics for each column:
+# - for numbers: min, max, mean, median, quartiles
+# - for text: length and class information
+
+# Look at the most popular posts (highest scores)
+reddit_data %>%
+  arrange(desc(score)) %>%
+  select(title, score, num_comments) %>%
+  head(10)
+
+# Breaking this down line by line:
+# reddit_data = our dataset
+# %>% = pipe operator - passes the result to the next function
+# arrange(desc(score)) = sorts rows by score column in descending order (highest first)
+# desc() = descending order function
+# select(title, score, num_comments) = picks only these 3 columns to show
+# head(10) = shows only the first 10 rows
+
+# Check for missing data
+reddit_data %>%
+  summarise(across(everything(), ~sum(is.na(.))))
+
+# Breaking this down:
+# summarise() = creates summary statistics
+# across() = applies a function to multiple columns
+# everything() = refers to all columns in the dataset
+# ~ = creates a formula (like saying "for each column, do this:")
+# sum(is.na(.)) = counts missing values (NA = "Not Available")
+# is.na() = checks if each value is missing (returns TRUE/FALSE)
+# sum() = adds up all the TRUE values (TRUE = 1, FALSE = 0)
+# . = refers to each column as the function goes through them
+```
+
+### Data Quality Checks
+
+```{r}
+# How many unique posts do we have?
+nrow(reddit_data)
+# nrow() = counts total number of rows (each row = one post)
+
+# What's the range of scores?
+range(reddit_data$score, na.rm = TRUE)
+# range() = finds the minimum and maximum values
+# reddit_data$score = selects just the "score" column from reddit_data
+# $ = dollar sign operator to access a specific column
+# na.rm = TRUE = removes missing values before calculating (na.rm = "NA remove")
+
+# What's the range of comment counts?
+range(reddit_data$num_comments, na.rm = TRUE)
+
+# Are there any deleted posts?
+sum(reddit_data$title == "[deleted]", na.rm = TRUE)
+# == = equality operator (checks if values are exactly equal)
+# This creates TRUE/FALSE for each row, then sum() counts the TRUEs
+
+sum(reddit_data$author == "[deleted]", na.rm = TRUE)
+```
+
+---
+
+## Part 3: Exploring the Census Dataset (20 minutes)
+
+### Understanding Census Data
+
+Census data is very different from Reddit data:
+- Each row represents one person
+- Variables are coded with numbers
+- There are "weights" that tell us how many people each row represents
+
+```{r}
+# Look at the structure
+glimpse(census_data)
+# glimpse() = same as before, shows structure of the census data
+
+# Basic exploration
+head(census_data)
+# head() = shows first 6 rows of census data
+```
+
+### Understanding the Variables
+
+```{r}
+# Look at the different variables we have
+names(census_data)
+# names() = lists all column names in the census dataset
+
+# Check the age distribution
+table(census_data$AGE)
+# table() = counts how many people are at each age
+# Creates a frequency table showing: Age | Count
+
+# Look at sex distribution (1 = Male, 2 = Female)
+table(census_data$SEX)
+# table() = counts how many people are coded as 1 vs 2
+
+# Look at race categories
+table(census_data$RACE)
+# table() = shows distribution across different race codes
+
+# Education levels
+table(census_data$EDUC)
+# table() = shows distribution across education level codes
+```
+
+### Understanding Survey Weights
+
+Survey weights are crucial in census data. They tell us how many people in the population each person in our sample represents.
+
+```{r}
+# Look at the weights
+summary(census_data$PERWT)
+# summary() = shows min, max, mean, median, etc. for the weight variable
+# PERWT = person weight (how many people each row represents)
+
+# Total sample size
+nrow(census_data)
+# nrow() = counts how many individual people are in our sample
+
+# Total population represented
+sum(census_data$PERWT)
+# sum() = adds up all the weights to get total population represented
+
+# Average weight per person
+mean(census_data$PERWT)
+# mean() = calculates the average weight value
+```
+
+### Basic Analysis
+
+```{r}
+# Calculate weighted percentages
+# What percentage of the population is male vs female?
+
+# Count by sex, weighted
+sex_counts <- census_data %>%
+  group_by(SEX) %>%
+  summarise(
+    sample_count = n(),
+    weighted_count = sum(PERWT),
+    percentage = weighted_count / sum(census_data$PERWT) * 100
+  )
+
+# Breaking this down:
+# group_by(SEX) = groups the data by sex categories (1 and 2)
+# summarise() = creates summary statistics for each group
+# n() = counts the number of rows in each group (sample size)
+# sum(PERWT) = adds up weights within each sex group
+# weighted_count / sum(census_data$PERWT) * 100 = calculates percentage
+# * 100 = converts from decimal to percentage
+
+print(sex_counts)
+# print() = displays the results table
+
+# Age distribution
+census_data %>%
+  summarise(
+    min_age = min(AGE),
+    max_age = max(AGE),
+    mean_age = weighted.mean(AGE, PERWT),
+    median_age = median(AGE)
+  )
+
+# Breaking this down:
+# min(AGE) = finds youngest person
+# max(AGE) = finds oldest person
+# weighted.mean(AGE, PERWT) = calculates average age using weights
+# median(AGE) = finds middle age value
+```
+
+---
+
+## Part 4: Comparing Different Data Sources (10 minutes)
+
+### Understanding Data Types
+
+We've worked with two very different types of data:
+
+**Reddit Data (Social Media)**
+- Semi-structured: Has consistent fields but content varies widely
+- Real-time: Reflects current conversations and trends
+- User-generated: Quality and accuracy can vary
+- No sampling weights: Each post represents itself
+
+**Census Data (Government Survey)**
+- Highly structured: Standardized questions and coding
+- Representative sample: Designed to represent the entire population
+- Professional quality: Rigorous data collection methods
+- Weighted: Each person represents many others in the population
+
+```{r}
+# Compare the two datasets
+cat("=== REDDIT DATA ===\n")
+cat("Type: Social media posts\n")
+cat("Sample size:", nrow(reddit_data), "posts\n")
+cat("Time period: Specific posts about Netflix\n")
+cat("Geographic scope: Unknown (could be global)\n\n")
+
+cat("=== CENSUS DATA ===\n")
+cat("Type: Population survey\n")
+cat("Sample size:", nrow(census_data), "people\n")
+cat("Represents:", round(sum(census_data$PERWT)), "people in the population\n")
+cat("Geographic scope: United States\n")
+cat("Data collection: Professional survey\n")
+
+# cat() = prints text to console
+# round() = rounds numbers to whole numbers (removes decimals)
+# \n = creates new lines to format the output nicely
+```
+
+---
+
+## Part 5: Data Source Exploration (15 minutes)
+
+### Learning About IPUMS USA
+
+**IPUMS** (Integrated Public Use Microdata Series) is a project that provides census and survey data for research. Let's explore what's available:
+
+**Visit: https://usa.ipums.org/usa/**
+
+**Key Features:**
+- Free registration with academic email
+- Access to decades of U.S. census data
+- Harmonized variables (consistent across years)
+- Both individual and household-level data
+
+**Available Datasets:**
+- **Decennial Census**: Every 10 years, basic demographics
+- **American Community Survey (ACS)**: Annual, detailed economics and social data  
+- **Current Population Survey (CPS)**: Monthly employment data
+
+**How IPUMS Works:**
+1. Select variables you want (age, income, education, etc.)
+2. Choose which years/samples
+3. Create an "extract" (custom dataset)
+4. Download both data file and documentation
+
+### Learning About Kaggle
+
+**Kaggle** is a platform for data science with thousands of free datasets.
+
+**Visit: https://www.kaggle.com/datasets**
+
+**Types of Data Available:**
+- Business datasets (sales, marketing, finance)
+- Sports and gaming data
+- Social media exports
+- Government and public datasets
+- Scientific research data
+
+**Benefits for Students:**
+- No registration required to browse
+- Real-world datasets
+- Community discussions about data quality
+- Examples of data analysis projects
+
+**Example Popular Datasets:**
+- Netflix movies and TV shows
+- COVID-19 data
+- Housing prices
+- Student performance data
+- Social media sentiment
+
+---
+
+## Practice Exercises
+
+### Exercise 1: Basic Data Questions
+
+**Question 1:** How many rows are in the Reddit dataset?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+nrow(reddit_data)
+# nrow() counts the number of rows in the dataset
+# Each row represents one Reddit post
+```
+:::
+
+**Question 2:** How many columns are in the Census dataset?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+ncol(census_data)
+# ncol() counts the number of columns in the dataset
+# Each column represents a different variable like age or sex
+```
+:::
+
+### Exercise 2: Exploring Reddit Data
+
+**Question 1:** What are the column names in the Reddit dataset?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+names(reddit_data)
+# names() shows all column names in the dataset
+# This helps us see what information we have about each post
+```
+:::
+
+**Question 2:** What is the highest score in the Reddit data?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+max(reddit_data$score, na.rm = TRUE)
+# max() finds the largest value
+# reddit_data$score selects just the score column
+# The dollar sign operator picks a specific column
+# na.rm = TRUE ignores missing values
+```
+:::
+
+### Exercise 3: Exploring Census Data
+
+**Question 1:** What is the youngest age in the Census data?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+min(census_data$AGE)
+# min() finds the smallest value
+# census_data$AGE selects the age column from census data
+```
+:::
+
+**Question 2:** How many people in the sample are exactly 30 years old?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+sum(census_data$AGE == 30)
+# sum() adds up all the TRUE values
+# census_data$AGE == 30 checks if each person age equals 30
+# Two equal signs mean exactly equal to
+# This creates TRUE/FALSE for each person then sum() counts the TRUEs
+```
+:::
+
+### Exercise 4: Making Simple Comparisons
+
+**Question 1:** Which dataset is bigger - Reddit or Census?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+# Count rows in each dataset
+reddit_rows <- nrow(reddit_data)
+census_rows <- nrow(census_data)
+
+# Display the counts
+cat("Reddit dataset:", reddit_rows, "rows\n")
+cat("Census dataset:", census_rows, "rows\n")
+
+# Compare them
+if(reddit_rows > census_rows) {
+  cat("Reddit dataset is bigger")
+} else {
+  cat("Census dataset is bigger")
+}
+
+# cat() prints text to the screen
+# \n creates a new line
+# if() checks a condition and does something based on the result
+```
+:::
+
+**Question 2:** What is the average age in the Census data?
+
+:::{.callout-note collapse="true"}
+## Reveal Answer
+
+```{r}
+mean(census_data$AGE)
+# mean() calculates the average of all values
+# This adds up all ages and divides by the number of people
+```
+:::
+
+---
+
+## What You've Practiced
+
+After completing these exercises, you should understand:
+- How to count rows and columns with nrow() and ncol()
+- How to find column names with names()
+- How to find minimum and maximum values with min() and max()
+- How to calculate averages with mean()
+- How to count specific values using sum() and double equals
+- How to compare datasets using simple if statements
+
+---
+## Key Takeaways
+
+### What We Learned
+
+1. **File Paths**: How to locate and reference files on your computer
+2. **Different Data Types**: Social media vs government survey data have very different structures
+3. **Data Quality**: Always check for missing values, outliers, and data errors
+4. **Survey Weights**: Census data uses weights to represent the larger population
+5. **Documentation**: Always document your data sources and methods
+
+### Important Skills for Data Science
+
+- **Always explore your data first** before doing analysis
+- **Understand your data source** - where did it come from and how was it collected?
+- **Check data quality** - missing values, duplicates, outliers
+- **Document everything** - future you will thank present you
+- **Different data requires different approaches** - social media data vs survey data need different handling
+
+### Next Steps
+
+- Practice loading different types of files (CSV, Excel, JSON)
+- Explore more datasets on Kaggle
+- Learn about data cleaning and preparation
+- Understand sampling and bias in different data sources
+
+**Remember**: Good data science starts with understanding your data!
