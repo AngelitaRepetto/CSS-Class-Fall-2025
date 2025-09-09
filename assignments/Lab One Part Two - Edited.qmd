@@ -629,33 +629,107 @@ iris_tbl %>%
 ::: {.callout-note collapse="true"}
 ## Click to see Exercise 1 Answer
 ```{r}
-#| include: false
-# Exercise solution using base R
+# Exercise solution 
+
+# Load the built-in dataset "mtcars"
 data(mtcars)
 
-# 1. Summary by cylinders
+# 1. Summary by cylinders -------------------------------------------
+
+# Print a label so we know what this section is about
 print("1. Fuel efficiency by cylinders:")
-mpg_summary <- aggregate(mpg ~ cyl, data = mtcars,
-                         FUN = function(x) c(count = length(x), mean = mean(x)))
+
+# aggregate() applies a function to data grouped by some variable
+# mpg ~ cyl means: group mpg values by the variable cyl (number of cylinders)
+# data = mtcars tells it which dataset to use
+# FUN = function(x) ... tells aggregate what to compute for each group:
+#   - length(x) counts how many rows in that group
+#   - mean(x) gives the average mpg in that group
+mpg_summary <- aggregate(
+  mpg ~ cyl, 
+  data = mtcars,
+  FUN = function(x) c(count = length(x), mean = mean(x))
+)
+
+# Print the grouped summary results
 print(mpg_summary)
 
-# 2. Would create scatter plot with ggplot2
-cat("\n2. Scatter plot code:\n")
-cat("ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +\n")
-cat("  geom_point() + geom_smooth(method = 'lm')\n")
 
-# 3. Create efficiency categories
-mtcars$efficiency <- ifelse(mtcars$mpg > 20, "High",
-                           ifelse(mtcars$mpg >= 15, "Medium", "Low"))
+# 2. Scatter plot with ggplot2 --------------------------------------
+
+# ggplot() builds plots layer by layer.
+# aes(x = wt, y = mpg, color = factor(cyl)) defines the "aesthetics":
+#   - x-axis is car weight (wt)
+#   - y-axis is miles per gallon (mpg)
+#   - color points by cylinder count (cyl, turned into a factor for categories)
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  
+  # geom_point() makes a scatter plot
+  # size = 3 controls point size; alpha = 0.7 makes them partly transparent
+  geom_point(size = 3, alpha = 0.7) +
+  
+  # geom_smooth() adds a fitted regression line
+  # method = "lm" means use linear regression
+  # se = TRUE means show a shaded confidence band around the line
+  geom_smooth(method = "lm", se = TRUE) +
+  
+  # facet_wrap(~ cyl) makes separate panels for each cylinder category
+  facet_wrap(~ cyl) +
+  
+  # labs() sets labels: title, axis labels, and legend title
+  labs(
+    title = "Weight vs MPG by Cylinder Count",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon",
+    color = "Cylinders"
+  ) +
+  
+  # theme_minimal() gives the plot a clean look
+  theme_minimal() +
+  
+  # theme() customizes appearance
+  # plot.title changes font size (16) and centers (hjust = 0.5)
+  # strip.text controls the text that labels each facet panel
+  theme(
+    plot.title = element_text(size = 16, hjust = 0.5),
+    strip.text = element_text(size = 12, face = "bold")
+  )
+
+
+# 3. Create efficiency categories -----------------------------------
+
+# ifelse(test, yes, no) assigns values based on conditions
+# First test: if mpg > 20 → "High"
+# Else, test again: if mpg >= 15 → "Medium"
+# Else → "Low"
+mtcars$efficiency <- ifelse(
+  mtcars$mpg > 20, "High",
+  ifelse(mtcars$mpg >= 15, "Medium", "Low")
+)
+
+# table() counts how many cars fall into each efficiency category
 efficiency_counts <- table(mtcars$efficiency)
+
+# Print a label and then the table of counts
 print("\n3. Efficiency categories:")
 print(efficiency_counts)
 
-# 4. Correlations with mpg
-correlations <- sapply(mtcars[, names(mtcars) != "mpg" & sapply(mtcars, is.numeric)],
-                      function(x) cor(x, mtcars$mpg))
-print("\n4. Correlations with MPG:")
-print(round(sort(correlations, decreasing = TRUE), 3))
+
+# 4. Correlations with mpg ------------------------------------------
+
+# cor(x, y) computes the Pearson correlation between two numeric variables
+# Here: mpg vs cyl
+cor(mtcars$mpg, mtcars$cyl)  # you could repeat with hp, wt, etc.
+
+# To do correlations with all numeric variables at once:
+# dplyr::select(mtcars, where(is.numeric)) selects only numeric columns
+mtcars_num <- dplyr::select(mtcars, where(is.numeric))
+
+# cor(mtcars_num) computes the correlation matrix of all numeric columns
+# [-1, "mpg"] extracts every row except the first, in the column for mpg
+# (assumes mpg is the first column; safer would be to use column names)
+cor(mtcars_num)[-1, "mpg"]
+
 ```
 
 **Manual Answer Summary:**
